@@ -11,6 +11,10 @@ import { DevelopComponent } from './views/develop/develop.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RemesasComponent } from './views/remesas/remesas.component';
 import { CalcComponent } from './components/calc/calc.component';
+import { NavtabComponent } from './components/navtab/navtab.component';
+import { FormsModule } from '@angular/forms';
+import { RegisterComponent } from './views/register/register.component';
+import { ForgotpassComponent } from './views/forgotpass/forgotpass.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +25,16 @@ import { CalcComponent } from './components/calc/calc.component';
     DevelopComponent,
     FooterComponent,
     RemesasComponent,
-    CalcComponent
+    CalcComponent,
+    NavtabComponent,
+    RegisterComponent,
+    ForgotpassComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
