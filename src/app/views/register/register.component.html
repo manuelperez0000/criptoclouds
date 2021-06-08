@@ -12,14 +12,28 @@
                             </div>
                         </div>
                         <input type="text" class="input-login form-control" placeholder="Ingrese su Email">
-                        <input type="text" class="input-login form-control" placeholder="Repita su Email">
-                        <input type="text" class="input-login form-control" placeholder="Nombre completo">
-                        <input type="text" class="input-login form-control" placeholder="Cedula de identidad">
-                        <input type="text" class="input-login form-control" placeholder="Telefono">
+                        
+                        <input type="text" class="mt-4 input-login form-control" placeholder="Nombre completo">
+                        
+                        <div class="input-group mt-4">
+                            <select class="selectCI" name="cedula">
+                                <option value="V">V</option>
+                                <option value="E">E</option>
+                            </select>
+                           <!--  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">V</button>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="#">V</a></li>
+                              <li><a class="dropdown-item" href="#">E</a></li>
+                            </ul> -->
+
+                            <input type="text" class="input-login form-control" placeholder="Cedula" aria-label="Text input with dropdown button">
+                          </div>
+                        <input type="text" class="mt-4 input-login form-control" placeholder="Telefono">
                         <input type="password" class="input-login mt-4 form-control" placeholder="Ingrese su contraseña">
-                        <input type="button" value="Entrar" class="form-control bg-primary text-white mt-4">
-                        <div class="text-center mt-2 gray">
-                            ¿Ya tienes una cuenta? <br><a href="#">Entra aqui</a>
+                        <input type="password" class="input-login mt-4 form-control" placeholder="Repita su contraseña">
+                        <input type="button" value="Enviar" class="form-control bg-primary text-white mt-4">
+                        <div class="text-center mt-4 gray">
+                            ¿Ya tienes una cuenta? <br><a [routerLink]="['/login']">Entra aqui</a>
                         </div>
                     </div>
                 </div>

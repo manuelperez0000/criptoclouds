@@ -1,1 +1,32 @@
-<p>forgotpass works!</p>
+<div class="nube login">
+    <app-navbar></app-navbar>
+    <div class="container-fluid py-5">
+        <div class="row">
+            <div class="col-12 col-sm-10 col-md-7 col-lg-5">
+                <div class="p-3">
+                    <h1 class="text-center text-white">Bienvenido</h1>
+                    <p class="text-white text-center mb-3">
+                        Al ingresar ingresar su correo le enviaremos un link de recuperacion para que pueda realizar la recuperacion de su contraseña
+                    </p>
+                    <div class="bg-login bg-light">
+                        <div class="pt-4">
+                            <div class="fondo-icono-log text-center text-light">
+                                <i class="bi bi-lock icono-person"></i>
+                            </div>
+                        </div>
+                        <input type="text" class="input-login form-control" placeholder="Ingrese su Email">
+                        
+                        <input type="button" (click)="forgot()" value="Enviar al correo" class="form-control bg-primary text-white mt-4">
+                        
+                        <div class="text-center mt-2 gray">
+                            ¿Aun no tienes una cuenta? <br><a [routerLink]="['/register']">Registrate aqui</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-none  col-md-6 text-center">
+                <img src="../../../assets/cripto-img.svg" class="imgLogin" alt="">
+            </div>
+        </div>
+    </div>
+</div>

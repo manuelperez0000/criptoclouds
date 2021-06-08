@@ -15,6 +15,8 @@ import { NavtabComponent } from './components/navtab/navtab.component';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './views/register/register.component';
 import { ForgotpassComponent } from './views/forgotpass/forgotpass.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { PoliticsComponent } from './views/politics/politics.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { ForgotpassComponent } from './views/forgotpass/forgotpass.component';
     CalcComponent,
     NavtabComponent,
     RegisterComponent,
-    ForgotpassComponent
+    ForgotpassComponent,
+    MenuComponent,
+    PoliticsComponent
   ],
   imports: [
     BrowserModule,

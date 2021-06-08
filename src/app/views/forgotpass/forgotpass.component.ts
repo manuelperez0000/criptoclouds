@@ -12,4 +12,7 @@ export class ForgotpassComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  forgot(){
+    alert("Se a enviado un link de recuperacion a su correo, esto puede tardar unos minutos")
+  }
 }

@@ -9,22 +9,25 @@ import { CoinsPricesService } from '../../services/coins-prices.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  modelCalc:string=""
+  vesModel:any
+  coinModel:any
+  decimalVes:any = 0
+  decimalCoin:any = 0
+
+  btnChange:boolean = true
+
+  porcentage:any = 5
+  decimalAux:any = 0
+
   loading:boolean = true
   loadingCripto:boolean = true
-  dolar:any
+  dolar:any = {precio:0}
   listaCriptos:any
-  recibes:number = 0
   cripto:number = 0
-  inputValue:number = 1
   symbol:string = "BTC"
-  changeValor:any
-  recibesUsd:number = 0
-  recibesVES:number = 0
+  changeValor:any = 0
 
-  constructor( private precio:PrecioDolarService,
-               private coins:CoinsPricesService ) {
-                
+  constructor(private precio:PrecioDolarService,private coins:CoinsPricesService ) {    
       this.precio.getPrecioDolar().subscribe((resp:any)=>{
         this.dolar = resp
         this.loading = false
@@ -37,38 +40,47 @@ export class HomeComponent implements OnInit {
       })
    }
 
-  ngOnInit(){
-    
+  ngOnInit(){}
+
+  vesToCoin(){
+    this.decimalAux = (parseFloat(this.vesModel)/this.dolar.precio/this.changeValor)
+
+    if(this.btnChange){
+      this.decimalVes = this.decimalAux-(this.decimalAux/100*this.porcentage)
+    }else{
+      this.decimalVes = this.decimalAux+(this.decimalAux/100*this.porcentage)
+    }
+
+    this.coinModel = this.ochoDecimal(this.decimalVes)
+    console.log(this.vesModel)
+  }
+  
+  coinToVes(){
+    this.decimalAux = (parseFloat(this.coinModel)*this.dolar.precio*this.changeValor)
+    if(this.btnChange){
+      this.decimalCoin = this.decimalAux+(this.decimalAux/100*this.porcentage) 
+    }else{
+      this.decimalCoin = this.decimalAux-(this.decimalAux/100*this.porcentage)
+    }
+    this.vesModel = this.dosDecimal(this.decimalCoin)
   }
 
-  getKey(termino:string){
-    this.inputValue = parseFloat(termino) 
-    this.recibes = this.inputValue*this.changeValor*this.dolar.precio
-    this.recibesUsd = this.inputValue*this.changeValor
-    console.log(this.changeValor)
+  ochoDecimal(valor:any){
+    return valor.toFixed(8)
   }
-  getKey2(termino:string){
-    this.inputValue = parseFloat(termino) 
-    this.recibesVES = this.inputValue/this.dolar.precio/this.changeValor
-    this.recibesUsd = this.inputValue/this.dolar.precio
-    console.log(this.changeValor) 
-    
+  dosDecimal(valor:any){
+    return valor.toFixed(2)
   }
 
   changeCoin(item:string,price:number){
     this.changeValor = price
     this.symbol = item
-    this.recibes    = this.changeValor*this.dolar.precio*this.inputValue
-    this.recibesVES = this.inputValue/this.dolar.precio/this.changeValor
-    this.recibesUsd = this.changeValor*this.inputValue
-    console.log("change: "+item+" price: "+price)
+    this.vesToCoin()
   }
-  
-  deleteInput(){
-    this.recibes = 0
-    this.recibesVES = 0
-    this.inputValue = 0
-    this.modelCalc = ""
+
+  changeConvert(){
+    this.btnChange = (!this.btnChange)
+    this.vesModel = ""
+    this.coinModel = ""
   }
-    
 }

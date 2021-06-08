@@ -15,10 +15,10 @@
                         <input type="password" class="input-login mt-4 form-control" placeholder="Ingrese su contraseña">
                         <input type="button" value="Entrar" class="form-control bg-primary text-white mt-4">
                         <div class="text-center mt-4 gray">
-                            ¿Olvido su contraseña? <a href="#">Click aqui</a>
+                            ¿Olvido su contraseña? <a [routerLink]="['/forgotpass']" routerLinkActive="router-link-active" >Click aqui</a>
                         </div>
                         <div class="text-center mt-2 gray">
-                            ¿Aun no tienes una cuenta? <br><a href="#">Registrate aqui</a>
+                            ¿Aun no tienes una cuenta? <br><a [routerLink]="['//register']">Registrate aqui</a>
                         </div>
                     </div>
                 </div>

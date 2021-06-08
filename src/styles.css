@@ -7,6 +7,7 @@
   --btn-primary:rgb(50,151,189);
   --btn-primary-hover:rgb(55, 167, 199);
   --text-gray:rgb(128,128,128);
+  --griz-o:rgb(73, 73, 73);
 }
 .gray{
   color: var(--text-gray);
@@ -57,7 +58,7 @@ body{
   border-radius: 0px 5px 5px 0px !important;
 }
 .select-money2{
-  border-radius: 5px 0px 0px 5px !important;
+  border-radius: 0px 5px 5px 0px !important;
 }
 .select-money3{
   border-radius: 5px 5px 5px 5px !important;
@@ -367,4 +368,67 @@ body{
 }
 .text404{
   font-size: 150px;
+}
+.btn-change{
+  border-radius: 20%;
+  background-color: var(--primary);
+  color:#fff;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  border:none;
+}
+.btn-change:hover{
+  background-color: rgb(56, 114, 180);
+  border: none;
+}
+.min-btn-calc{
+  width: 100px !important;
+}
+
+
+/* desde aqui el menu */
+#myDIV{
+  background-color:white;
+  min-height: 150vh;
+}
+.hover-menu{
+  padding: 20px;
+  color: var(--griz-o);
+  width: 98%;
+  max-width: 400px;
+  height: 100%;
+  border:1px solid rgb(245, 245, 245);
+  border-radius: 1px;
+  position: fixed;
+  background-color: rgba(249, 249, 249, 0.96);
+  transition-duration: 1s;
+  transform: translateX(500px);
+  top: 0px;
+  right: 0px;
+}
+.boton-x{
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid rgba(0, 0, 0, 0);
+  border-radius: 50px;
+  float: right;
+  color: var(--griz-o);
+}
+.boton-x:hover{
+  border: 2px solid rgba(63, 128, 248, 0.424);
+  background-color: rgba(93, 217, 255, 0.164);
+
+}
+.griz-o{
+  color: var(--griz-o);
+}
+.selectCI{
+  border: 1px solid rgb(32, 52, 85);
+  border-radius: 3px 0px 0px 3px;
+  background-color: var(--primary);
+  padding: 0px 3px 0px 3px;
+  color:white;
+}
+.bg-primary{
+  background-color: var(--primary)!important;
 }
