@@ -1,151 +1,216 @@
-<app-navbar></app-navbar>
-<div class="container p-3 mb-3">
+<div class="nube">
+  <app-navbar></app-navbar>
+  <div class="container pt-3 pb-3">
     <div class="row">
-        <div class="col-12 col-md-6 pb-4">
-          <div class="mb-4">
-            <h1 class="text-white title pb-3">Convierte tus Bolivares en criptos y divisas</h1>
-        
-            <p class="text-white pb-3">compra y vende <b class="yellow">Criptomonedas</b> de la forma mas rapida y segura</p>
-        
-            <button class="btn btn-primary form-control m-300 text-white"> Comenzar </button>
-          </div>
-            
-           <div class="text-white">
-                precio del dolar: 
-                <b *ngIf="loading == true">
-                    <div class="spinner-border text-light" role="status">
-                        <span class="sr-only"></span>
-                    </div>
-                </b>
-                <b *ngIf="loading == false"> 
-                   {{ dolar.precio | currency:'Bs. ' }}  
-                </b>
-           </div>
-           <div>
-             <strong class="text-white mt-3 pt-3 mb-0 pb-0">Referencia Coinmarketcap</strong>
-           </div>
-           <div class="text-white">
-            precio del Bitoin: 
-            <b *ngIf="loadingCripto == true">
-                <div class="spinner-border text-light" role="status">
-                    <span class="sr-only"></span>
-                </div>
-            </b>
-            <b *ngIf="loading == false"> 
-              {{ listaCriptos[0].price*dolar.precio | currency:'Bs. ' }}  
-            </b>
-          </div>
-          <div class="text-white">
-            precio del Bitoin: 
-            <b *ngIf="loadingCripto == true">
-                <div class="spinner-border text-light" role="status">
-                    <span class="sr-only"></span>
-                </div>
-            </b>
-            <b *ngIf="loading == false"> 
-              {{ listaCriptos[0].price | currency }}  
-            </b>
-          </div>
-
-            
+      <div class="col-12 col-md-6 pb-4">
+        <div class="mb-4">
+          <h1 class="text-white title pb-3">Convierte tus Bolivares en criptos y divisas</h1>
+          <p class="text-white pb-3">compra y vende <b class="yellow">Criptomonedas</b> de la forma mas rapida y segura
+          </p>
+          <button class="btn btn-primary form-control m-300 text-white"> Comenzar </button>
         </div>
-        <div class="col-12 col-md-6 text-white">
-            <!-- <app-calc></app-calc> -->
-            <div class="bg-calc" *ngIf="loading == false && loadingCripto == false">
-                <h5 class="text-blue">Calculadora</h5>
-                <div class="calc gray">Envias</div>
-                <div class="input-group">
-                 
-                    <input (keyup)="getKey(inputkeycalc.value)" #inputkeycalc type="number" class="form-control imput-change">
-                    <div class="btn-group" role="group">
-                        <button id="money1" type="button" class="border-light btn btn-light dropdown-toggle select-money" data-bs-toggle="dropdown" aria-expanded="false">
-                          <img class="img-flag" src="../../../assets/img-monedas/BTC.png" alt="" srcset=""> BTC
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                          <!-- lista de criptos -->
-                          <li *ngFor="let item of listaCriptos">
-                            <a class="dropdown-item" href="#">
-                              <img class="img-flag" src="../../../assets/img-monedas/{{item.symbol}}.png" alt="" srcset=""> {{ item.symbol }}
-                            </a>
-                          </li>
-            
-                        </ul>
-                    </div>
-                </div>
-                <div class="">
-                    <div class="row">
-                        <div class="col-6 gray pt-3">
-                            Recibes: <br>{{ recibes | currency:'Bs.' }}
-                        </div>
-                        <div class="col-12">
-                          <button (click)="calcularCripto()" class="btn btn-success form-control">
-                            Calcular
-                          </button>
-                        </div>
-                        <!-- <div class="col-12">
-                            <div class="input-group">
-                                <input type="number" class="form-control imput-change input-calc" placeholder="0.0" aria-describedby="btnGroupAddon" value="{{total}}">
-                                <div class="btn-group" role="group">
-                                    <button id="money1" type="button" class="btn btn-light border-light dropdown-toggle select-money" data-bs-toggle="dropdown" aria-expanded="false">
-                                      <img class="img-flag" src="https://lipis.github.io/flag-icon-css/flags/4x3/ve.svg" alt="" srcset=""> VES
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                      <li><a class="dropdown-item" href="#"> <img class="img-flag" src="https://lipis.github.io/flag-icon-css/flags/4x3/ve.svg" alt="" srcset=""> VES</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div> 
-                        <div class="col-12 pt-3">
-                            <button class="btn btn-success form-control"> Continuar  </button>
-                        </div>-->
-                        <!-- <div class="col-12">
-                             <table class="table">
-                            <thead>
-                              <tr>
-                                <th scope="col">ID <i class="fa fa-list"></i></th>
-                                <th scope="col">Simbol <i class="bi-list"></i></th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Precio</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr *ngFor="let item of listaCriptos">
-                                <th scope="row">{{ item.id }} </th>
-                                <td>{{ item.symbol }}</td>
-                                <td>{{ item.name }}</td>
-                                <td>{{ item.quote.USD.price | currency }}</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div> -->
-                    </div>
-                </div>
+        <div class="text-white">
+          Precio del dolar:
+          <div *ngIf="loading == true">
+            <div class="spinner-border text-light" role="status">
+              <span class="sr-only"></span>
             </div>
-            
+          </div>
+          <div *ngIf="loading == false">
+            <h2>
+              {{ dolar.precio | currency:'Bs. ' }}
+            </h2>
+          </div>
         </div>
+        <div class="text-white">
+          Precio del Bitcoin:
+          <div *ngIf="loadingCripto == true">
+            <div class="spinner-border text-light" role="status">
+              <span class="sr-only"></span>
+            </div>
+          </div>
+          <div *ngIf="loading == false">
+            <h2 class="text-yellow">
+              {{ listaCriptos[0].price*dolar.precio | currency:'Bs. ' }}
+            </h2>
+          </div>
+        </div>
+        <div class="text-white">
+          <div *ngIf="loadingCripto == true">
+            <div class="spinner-border text-light" role="status">
+              <span class="sr-only"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 text-white">
+        <div class="text-center">
+          <div *ngIf="loading == true">
+            <div class="spinner-border text-light" role="status">
+              <span class="sr-only"></span>
+            </div>
+          </div>
+        </div>
+        <div class="tab-content" id="myTabContent">
+          <div id="comprar" role="tabpanel" aria-labelledby="comprar-tab" class="bg-calc tab-pane fade show active">
+            <!-- *ngIf="loading == false && loadingCripto == false" -->
+            <h5 class="text-blue">Calculadora</h5>
+            <div class="calc gray">Envias:</div>
+
+            <!-- cambio -->
+            <div *ngIf="btnChange" class="input-group pb-2">
+                <input [(ngModel)]="vesModel" (change)="vesToCoin()" (keyup)="vesToCoin()" #ves
+                type="number" class="form-control imput-change">
+                <div class="btn-group" role="group">
+                  <button type="button" class="border-light btn btn-light select-money2 min-btn-calc">
+                    <img class="img-flag" src="../../../assets/img-monedas/ve.svg" alt="" srcset="">
+                  VES
+                  </button>
+              </div>
+            </div>
+            <!-- fin cambio -->
+            <!-- inicio cambio -->
+            <div *ngIf="!btnChange" class="input-group pb-2">
+              <input [(ngModel)]="coinModel" (change)="coinToVes()" (keyup)="coinToVes()" #coin
+                type="text" class="form-control imput-change">
+
+              <div class="btn-group" role="group">
+                <button id="money1" type="button"
+                  class="border-light btn btn-light dropdown-toggle select-money min-btn-calc" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <img class="img-flag" src="../../../assets/img-monedas/{{symbol}}.png" alt="" srcset=""> {{ symbol }}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                  <!-- lista de criptos -->
+                  <li *ngFor="let item of listaCriptos">
+                    <a (click)="changeCoin(item.symbol,item.price)" class="dropdown-item">
+                      <img class="img-flag" src="../../../assets/img-monedas/{{item.symbol}}.png"> {{ item.symbol }}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- fin cambio -->
+
+            <div class="calc gray d-flex justify-content-between mt-3">
+              Recibes:
+              <button (click)="changeConvert()" class="btn-change shadow">
+                <i class="bi bi-arrow-down-up"></i>
+              </button>
+            </div>
+            <div *ngIf="!btnChange" class="input-group pb-2">
+              <input [(ngModel)]="vesModel" (change)="vesToCoin()" (keyup)="vesToCoin()" #ves
+              type="text" class="form-control imput-change">
+              <div class="btn-group" role="group">
+                <button type="button" class="border-light btn btn-light select-money2 min-btn-calc">
+                  <img class="img-flag" src="../../../assets/img-monedas/ve.svg" alt="" srcset="">
+                VES
+                </button>
+            </div>
+          </div>
+            <!-- inicio cambio -->
+            <div *ngIf="btnChange" class="input-group pb-2">
+              <input [(ngModel)]="coinModel" (change)="coinToVes()" (keyup)="coinToVes()" #coin
+                type="text" class="form-control imput-change">
+              <div class="btn-group" role="group">
+                <button id="money1" type="button"
+                  class="border-light btn btn-light dropdown-toggle select-money min-btn-calc" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <img class="img-flag" src="../../../assets/img-monedas/{{symbol}}.png" alt="" srcset=""> {{ symbol }}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                  <!-- lista de criptos -->
+                  <li *ngFor="let item of listaCriptos">
+                    <a (click)="changeCoin(item.symbol,item.price)" class="dropdown-item">
+                      <img class="img-flag" src="../../../assets/img-monedas/{{item.symbol}}.png"> {{ item.symbol }}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- fin cambio -->
+
+            <div class="">
+              <div class="row">
+                <div class="col-12 py-3 mt-4">
+                  <button class="btn btn-success form-control">
+                    Continuar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+         <!--  <div id="vender" role="tabpanel" aria-labelledby="vender-tab" class="tab-pane fade">
+            <div id="comprar" role="tabpanel" aria-labelledby="comprar-tab" class="bg-calc tab-pane fade show active"
+              *ngIf="loading == false && loadingCripto == false">
+              <h5 class="text-blue">Vender Criptos</h5>
+              <div class="calc gray">Envias:</div>
+              <div class="input-group">
+                <input [(ngModel)]="modelCalc" (change)="getKey(inputkeycalc.value)"
+                  (keyup)="getKey(inputkeycalc.value)" #inputkeycalc type="number" class="form-control imput-change">
+                <div class="btn-group" role="group">
+                  <button id="money1" type="button" class="border-light btn btn-light dropdown-toggle select-money"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <img class="img-flag" src="../../../assets/img-monedas/{{symbol}}.png" alt="" srcset=""> {{symbol}}
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    
+                    <li *ngFor="let item of listaCriptos">
+                      <a (click)="changeCoin(item.symbol,item.price)" class="dropdown-item">
+                        <img class="img-flag" src="../../../assets/img-monedas/{{item.symbol}}.png" alt="" srcset=""> {{
+                        item.symbol }}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="">
+                <div class="row">
+                  <div class="col-6 gray pt-3">
+                    Recibes:
+                    <h2>
+                      {{ recibes | currency:'Bs.' }}
+                    </h2>
+                     <h3>{{ recibesUsd | currency }} </h3>
+                  </div>
+                  <div class="col-12">
+                    <button class="btn btn-success form-control">
+                      Continuar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-<div class="container-fluid bg-white pt-5">
-    <div class="row">
-        <div class="col-12 col-md-4 text-center p-4">
-            <h1 class="text-blue title2">Criptos</h1>
-            <p>En criptoclouds puedes cambiar una gran variedad de criptomonedas</p>
-            <img src="../../../assets/cripto-img.svg" class="diseno" alt="" srcset="">
-            <button class="btn btn-primary form-control text-white">Ver criptos</button>
-        </div>
-        <div class="col-12 col-md-4 text-center p-4">
-            <h1 class="text-blue title2">Resguarda</h1>
-            <p>Convierte tus bolivares en dolares y retirarlos cuando los necesites</p>
-            <img src="../../../assets/resguarda.svg" class="diseno" alt="" srcset="">
-            <button class="btn btn-primary form-control text-white">Resguardar</button>
-        </div>
-        <div class="col-12 col-md-4 text-center py-4">
-            <h1 class="text-blue title2">Remesas</h1>
-            <p>Envia remesas a tus familiares y amigo desde cualquier parte del mundo</p>
-            <img src="../../../assets/remesas.svg" class="diseno" alt="" srcset="">
-            <button routerLink="remesas" class="btn btn-primary form-control text-white">Saber Mas</button>
-        </div>
+<div class="container-fluid bg-white pt-5 pb-5">
+  <div class="row">
+    <div class="col-12 col-md-4 text-center p-4">
+      <h1 class="text-blue title2">Criptos</h1>
+      <p>
+        En criptoclouds puedes cambiar una gran variedad de criptomonedas
+      </p>
+      <img src="../../../assets/cripto-img.svg" class="diseno" alt="" srcset="">
+      <button class="btn btn-primary form-control text-white">Ver criptos</button>
     </div>
+    <div class="col-12 col-md-4 text-center p-4">
+      <h1 class="text-blue title2">Resguarda</h1>
+      <p>Convierte tus bolivares en dolares y retirarlos cuando los necesites</p>
+      <img src="../../../assets/resguarda.svg" class="diseno" alt="" srcset="">
+      <button class="btn btn-primary form-control text-white">Resguardar</button>
+    </div>
+    <div class="col-12 col-md-4 text-center py-4">
+      <h1 class="text-blue title2">Remesas</h1>
+      <p>Envia remesas a tus familiares y amigo desde cualquier parte del mundo</p>
+      <img src="../../../assets/remesas.svg" class="diseno" alt="" srcset="">
+      <button routerLink="remesas" class="btn btn-primary form-control text-white">Saber Mas</button>
+    </div>
+  </div>
 </div>
 
 <app-footer></app-footer>

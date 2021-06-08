@@ -7,6 +7,7 @@
   --btn-primary:rgb(50,151,189);
   --btn-primary-hover:rgb(55, 167, 199);
   --text-gray:rgb(128,128,128);
+  --griz-o:rgb(73, 73, 73);
 }
 .gray{
   color: var(--text-gray);
@@ -41,6 +42,11 @@ body{
   font-weight: 700;
   color: var(--text-gray) !important;
 }
+.imput-change2{
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-gray) !important;
+}
 .border-light{
   border: 1px solid rgb(199, 199, 199) !important;
 }
@@ -49,7 +55,13 @@ body{
   height: 18px;
 }
 .select-money{
-  border-radius: 0px 5px 5px 0px;
+  border-radius: 0px 5px 5px 0px !important;
+}
+.select-money2{
+  border-radius: 0px 5px 5px 0px !important;
+}
+.select-money3{
+  border-radius: 5px 5px 5px 5px !important;
 }
 .btn-change:hover{
   border: 1px solid rgba(231, 255, 252);
@@ -89,12 +101,7 @@ background: linear-gradient(0deg, rgba(64,126,205,1) 10%, rgba(47,96,159,1) 90%)
   background-color: var(--btn-primary-hover);
   border: 1px solid rgba(255, 255, 255,0.3);
 }
-.bg-calc{
-  background-color: rgb(255, 255, 255);
-  border-radius: 3px;
-  border: 1px solid rgba(255, 255, 255,0.3);
-  padding: 10px;
-}
+
 .text-blue{
   color: var(--primary);
 }
@@ -277,4 +284,151 @@ body{
 .cero-pad{
   padding-right: 0px;
   padding-left:0px;
+}
+
+
+.bg-calc{
+  background-color: rgb(255, 255, 255);
+  border-radius: 0px 0px 3px 3px ;
+  padding: 10px;
+  transition: 0.3s;
+}
+.calc-tab{
+  color: #ffffff !important;
+  background-color: rgba(195, 195, 195, 0.144) !important;
+}
+.calc-tab.active{
+  background-color: rgb(255, 255, 255) !important;
+  color: rgb(110, 110, 110) !important;;
+}
+.nav-tabs{
+  border-bottom: red !important;
+}
+.btc{
+  color:rgb(54, 54, 54);
+  font-weight: 700;
+}
+
+.nube{
+  animation: nube 70s linear infinite;
+  background-image: url(../src/assets/nube.svg);
+  background-repeat: repeat-x;
+  background-size:cover;
+}
+.nube.login{
+  height: 100vh;
+}
+@keyframes nube {
+  0%{
+    background-position-x: -1200px;
+  }
+  100%{
+    background-position-x: 1200px;
+  }
+}
+.imgNube{
+  height:500px;
+}
+
+.bg-login{
+  border-radius: 3px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 30px;
+}
+.imgLogin{
+  height: 400px;
+}
+.logo-log{
+  height: 100px;
+}
+.input-login{
+  width: 100%;
+  background-color: rgb(243, 243, 243);
+  border-radius: 3px;
+  border: 1px solid rgb(233, 233, 233);
+  color: rgb(126, 126, 126) !important;
+}
+.icono-person{
+  height: 100px;
+  
+  font-size: 100px;
+  padding-top: 0px;
+  line-height: 0px;
+}
+.fondo-icono-log{
+  background-color: rgb(233, 233, 233);
+  border-radius: 50%;
+  height: 110px;
+  width: 110px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+.text404{
+  font-size: 150px;
+}
+.btn-change{
+  border-radius: 20%;
+  background-color: var(--primary);
+  color:#fff;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  border:none;
+}
+.btn-change:hover{
+  background-color: rgb(56, 114, 180);
+  border: none;
+}
+.min-btn-calc{
+  width: 100px !important;
+}
+
+
+/* desde aqui el menu */
+#myDIV{
+  background-color:white;
+  min-height: 150vh;
+}
+.hover-menu{
+  padding: 20px;
+  color: var(--griz-o);
+  width: 98%;
+  max-width: 400px;
+  height: 100%;
+  border:1px solid rgb(245, 245, 245);
+  border-radius: 1px;
+  position: fixed;
+  background-color: rgba(249, 249, 249, 0.96);
+  transition-duration: 1s;
+  transform: translateX(500px);
+  top: 0px;
+  right: 0px;
+}
+.boton-x{
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid rgba(0, 0, 0, 0);
+  border-radius: 50px;
+  float: right;
+  color: var(--griz-o);
+}
+.boton-x:hover{
+  border: 2px solid rgba(63, 128, 248, 0.424);
+  background-color: rgba(93, 217, 255, 0.164);
+
+}
+.griz-o{
+  color: var(--griz-o);
+}
+.selectCI{
+  border: 1px solid rgb(32, 52, 85);
+  border-radius: 3px 0px 0px 3px;
+  background-color: var(--primary);
+  padding: 0px 3px 0px 3px;
+  color:white;
+}
+.bg-primary{
+  background-color: var(--primary)!important;
 }

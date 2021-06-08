@@ -9,7 +9,7 @@ export class PrecioDolarService {
   constructor(private http:HttpClient) {}
   getPrecioDolar(){
     console.log("servicio del precio del dolar")
-    return this.http.get("http://localhost:3000/firebase/precio-dolar");
+    return this.http.get("https://criptoclouds.com/firebase/precio-dolar");
    
   }
 }
