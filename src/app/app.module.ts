@@ -17,6 +17,7 @@ import { RegisterComponent } from './views/register/register.component';
 import { ForgotpassComponent } from './views/forgotpass/forgotpass.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { PoliticsComponent } from './views/politics/politics.component';
+import { DatoscompraComponent } from './views/datoscompra/datoscompra.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PoliticsComponent } from './views/politics/politics.component';
     RegisterComponent,
     ForgotpassComponent,
     MenuComponent,
-    PoliticsComponent
+    PoliticsComponent,
+    DatoscompraComponent
   ],
   imports: [
     BrowserModule,

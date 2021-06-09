@@ -310,7 +310,7 @@ body{
 }
 
 .nube{
-  animation: nube 70s linear infinite;
+  animation: nube 100s linear infinite;
   background-image: url(../src/assets/nube.svg);
   background-repeat: repeat-x;
   background-size:cover;
@@ -320,10 +320,10 @@ body{
 }
 @keyframes nube {
   0%{
-    background-position-x: -1200px;
+    background-position-x: 1200px;
   }
   100%{
-    background-position-x: 1200px;
+    background-position-x: -1200px;
   }
 }
 .imgNube{
@@ -431,4 +431,57 @@ body{
 }
 .bg-primary{
   background-color: var(--primary)!important;
+}
+.cargador{
+  position:fixed;
+  width: 102%;
+  height: 100vh;
+  background-color: var(--primary);
+  top:0px;
+  right: 0px;
+}
+
+.h100{
+  height:100vh;
+}
+
+.img-logo-load{
+  animation: 2s infinite linear logo;
+}
+@keyframes logo {
+  0%{
+    transform: translateY(0px) rotate(0deg);
+  }
+  25%{
+    transform: translateY(-5px) rotate(-5deg);
+  }
+  50%{
+    transform: translateY(-10px) rotate(0deg);
+  }
+  75%{
+    transform: translateY(5px) rotate(5deg);
+  }
+  100%{
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+.nube2{
+  animation: nube2 60s linear infinite;
+  background-image: url(../src/assets/nube.svg);
+  background-repeat: repeat-x;
+  background-size:cover;
+}
+.nube2.cargador{
+  height: 100vh;
+}
+@keyframes nube2 {
+  0%{
+    background-position-x: 1200px;
+  }
+  100%{
+    background-position-x: -1200px;
+  }
+}
+.text-small{
+  font-size: 12px;
 }

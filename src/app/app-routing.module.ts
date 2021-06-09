@@ -8,15 +8,18 @@ import { NavtabComponent } from './components/navtab/navtab.component';
 import { RegisterComponent } from './views/register/register.component';
 import { ForgotpassComponent } from './views/forgotpass/forgotpass.component';
 import { PoliticsComponent } from './views/politics/politics.component'; 
+import { DatoscompraComponent } from './views/datoscompra/datoscompra.component';
 
 const routes: Routes = [
   { path:'',            component:HomeComponent, pathMatch:'full'  },
+  { path:'home',        component:HomeComponent },
   { path: 'remesas',    component:RemesasComponent },
   { path: 'navtab',     component:NavtabComponent },
   { path: 'login',      component:LoginComponent },
   { path: 'register',   component:RegisterComponent },
   { path: 'forgotpass', component:ForgotpassComponent },
   { path: 'politics', component:PoliticsComponent },
+  { path: 'datoscompra', component:DatoscompraComponent },
   { path:'**', component:DevelopComponent }
 ];
 
