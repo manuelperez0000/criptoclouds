@@ -13,15 +13,21 @@
                         </div>
                         <form (ngSubmit)="onSubmit( f )" #f="ngForm" >
                             <div *ngIf="f.submitted && f.controls['email'].errors" 
-                                 class="alert p-2 alert-danger text-small" role="alert">
+                                 class="animate__animated animate__headShake alert p-2 alert-danger text-small alert-login" role="alert">
                                 <i class="bi bi-exclamation-diamond-fill"></i> Debe proporcionar un email valido
                             </div>
-                            <input [(ngModel)]="user.email" name="email" [ngModelOptions]="{standalone: false}" type="email" email class="input-login form-control" placeholder="Ingrese su Email" required>
-                            <div class="alert p-2 text-small alert-danger mt-3" role="alert">
+                            <input [(ngModel)]="user.email" name="email" [ngModelOptions]="{standalone: false}" type="email" email class="input-login form-control mb-3" placeholder="Ingrese su Email" required>
+                            <div *ngIf="f.submitted && f.controls['password'].errors" 
+                                 class="animate__animated animate__headShake alert p-2 alert-danger text-small alert-login" role="alert">
                                 <i class="bi bi-exclamation-diamond-fill"></i> Su contraseña debe ser de 4 o mas caracteres
                             </div>
-                            <input [(ngModel)]="user.password" minlength="4" name="password" [ngModelOptions]="{standalone: false}" type="password" class="input-login mt-4 form-control" placeholder="Ingrese su contraseña" required>
-                            <input type="submit" value="Entrar" class="form-control bg-primary text-white mt-4">
+                            <input [(ngModel)]="user.password" 
+                                minlength="4" 
+                                name="password" 
+                                [ngModelOptions]="{standalone: false}" type="password" 
+                                class="input-login mb-4 form-control" placeholder="Ingrese su contraseña" 
+                                required>
+                            <input type="submit" value="Entrar" class="form-control bg-primary text-white">
                         </form>
                         <div class="text-center mt-4 gray">
                             ¿Olvido su contraseña? <a [routerLink]="['/forgotpass']" routerLinkActive="router-link-active" >Click aqui</a>
