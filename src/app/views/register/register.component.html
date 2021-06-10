@@ -10,28 +10,79 @@
                             <div class="fondo-icono-log text-center text-light">
                                 <i class="bi bi-person icono-person"></i>
                             </div>
-                        </div>
-                        <input type="text" class="input-login form-control" placeholder="Ingrese su Email">
-                        
-                        <input type="text" class="mt-4 input-login form-control" placeholder="Nombre completo">
-                        
-                        <div class="input-group mt-4">
-                            <select class="selectCI" name="cedula">
-                                <option value="V">V</option>
-                                <option value="E">E</option>
-                            </select>
-                           <!--  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">V</button>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#">V</a></li>
-                              <li><a class="dropdown-item" href="#">E</a></li>
-                            </ul> -->
-
-                            <input type="text" class="input-login form-control" placeholder="Cedula" aria-label="Text input with dropdown button">
-                          </div>
-                        <input type="text" class="mt-4 input-login form-control" placeholder="Telefono">
-                        <input type="password" class="input-login mt-4 form-control" placeholder="Ingrese su contraseña">
-                        <input type="password" class="input-login mt-4 form-control" placeholder="Repita su contraseña">
-                        <input type="button" value="Enviar" class="form-control bg-primary text-white mt-4">
+                        </div> 
+                        <form (ngSubmit)="onSubmit( form )" #form="ngForm">
+                            <div *ngIf="form.submitted && form.controls['email'].errors" 
+                                 class="animate__animated animate__headShake alert p-2 alert-danger text-small alert-login" role="alert">
+                                <i class="bi bi-exclamation-diamond-fill"></i> Debe proporcionar un email valido
+                            </div>
+                            <input [(ngModel)]="user.email" 
+                                   name="email" 
+                                   type="email" 
+                                   email
+                                   required
+                                   class="input-login form-control mb-4" placeholder="Ingrese su Email">
+                            <div *ngIf="form.submitted && form.controls['nombre'].errors" 
+                                class="animate__animated animate__headShake alert p-2 alert-danger text-small alert-login" role="alert">
+                                <i class="bi bi-exclamation-diamond-fill"></i> Su nombre debe contener mas de 4 letras
+                            </div>
+                            <input [(ngModel)]="user.nombre"
+                                   name="nombre" 
+                                   type="text" 
+                                   required
+                                   minlength="4" 
+                                   class="mb-4 input-login form-control" placeholder="Nombre completo">
+                            <div *ngIf="form.submitted && form.controls['cedula'].errors" 
+                                class="animate__animated animate__headShake alert p-2 alert-danger text-small alert-login" role="alert">
+                                <i class="bi bi-exclamation-diamond-fill"></i> La cedula es requerida
+                            </div>
+                            <div class="input-group mb-4">
+                                <select [(ngModel)]="user.nacionalidad"
+                                         class="selectCI" 
+                                         name="nacionalidad">
+                                    <option value="v">V</option>
+                                    <option value="e">E</option>
+                                </select>
+                                <input  [(ngModel)]="user.cedula"
+                                        name="cedula"
+                                        minlength="4"
+                                        required
+                                        type="text" 
+                                        class="input-login form-control" placeholder="Cedula" 
+                                        aria-label="Text input with dropdown button">
+                            </div>
+                            <div *ngIf="form.submitted && form.controls['telefono'].errors" 
+                                class="animate__animated animate__headShake alert p-2 alert-danger text-small alert-login" role="alert">
+                                <i class="bi bi-exclamation-diamond-fill"></i> El telefono es requerido
+                            </div>
+                            <input  [(ngModel)]="user.telefono"
+                                    name="telefono"
+                                    type="text"
+                                    required
+                                    minlength="4" 
+                                    class="mb-4 input-login form-control" placeholder="Telefono">
+                            <div *ngIf="form.submitted && form.controls['password'].errors" 
+                                    class="animate__animated animate__headShake alert p-2 alert-danger text-small alert-login" role="alert">
+                                   <i class="bi bi-exclamation-diamond-fill"></i> Su contraseña debe ser de 4 o mas caracteres
+                            </div>
+                            <input  [(ngModel)]="user.password"
+                                    name="password"
+                                    type="password" 
+                                    required
+                                    minlength="4"
+                                    class="input-login mb-4 form-control" placeholder="Ingrese su contraseña">
+                            <div *ngIf="form.submitted && form.controls['password2'].errors" 
+                                class="animate__animated animate__headShake alert p-2 alert-danger text-small alert-login" role="alert">
+                                <i class="bi bi-exclamation-diamond-fill"></i> Su contraseña debe ser de 4 o mas caracteres
+                            </div>
+                            <input  [(ngModel)]="user.password2"
+                                    name="password2"
+                                    type="password" 
+                                    required
+                                    minlength="4"
+                                    class="input-login mb-4 form-control" placeholder="Repita su contraseña">
+                            <input type="submit" value="Enviar" class="form-control bg-primary text-white mt-4">
+                        </form>
                         <div class="text-center mt-4 gray">
                             ¿Ya tienes una cuenta? <br><a [routerLink]="['/login']">Entra aqui</a>
                         </div>
@@ -44,3 +95,4 @@
         </div>
     </div>
 </div>
+ 

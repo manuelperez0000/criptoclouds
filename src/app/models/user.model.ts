@@ -1,4 +1,9 @@
 export class UserModel{
-    email:string="";
+    email:any;
+    nombre:string="";
+    nacionalidad:string="";
+    cedula:string="";
+    telefono:string="";
     password:string="";
+    password2:string="";
 }

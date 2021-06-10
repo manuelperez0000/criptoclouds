@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import Swal from 'sweetalert2'
+import  Swal  from 'sweetalert2';
 import { UserService } from '../../services/user.service';
 import { UserModel } from '../../models/user.model';
 import { NgForm } from '@angular/forms';
-import { Route, Router, RouterLink } from '@angular/router';
-/* Swal.fire({
-      title: 'Error!',
-      text: 'Do you want to continue',
-      icon: 'error',
-      confirmButtonText: 'Cool'
-    }) */
+import { Router} from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,26 +12,64 @@ import { Route, Router, RouterLink } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   userToken:any
-  user:UserModel = new UserModel() 
+  user:UserModel = new UserModel()
+  errorMessage:string="";
+  recuerdame:boolean = false
 
-  constructor(private log:UserService, private router:Router) { }
+  constructor(private userService:UserService, private router:Router) { }
 
   ngOnInit(): void {
-    this.user.email = "manuelperez.0000@gmail.com"
-    this.user.password = "nina89123"
+    if(localStorage.getItem('email')){
+      this.user.email = localStorage.getItem('email')
+      this.recuerdame = true
+    }
   }
+
+
 
   onSubmit( form:NgForm ){
-    console.log("enviando el form login")
+    
+
+
     if(form.invalid){ return }
-    console.log("login valid")
 
-    this.log.login(this.user.email,this.user.password )
-      .subscribe((res)=>{
-        console.log(res['email'])
-        this.router.navigateByUrl("/home")
+    
+    Swal.fire({ 
+      title:"Cargando",
+      text:"Espere un momento por favor",
+      allowOutsideClick:false,
+      icon:"info"
+    })
+    Swal.showLoading()
+    
+    this.userService.login(this.user)
+    .subscribe((res)=>{
+      
+      if(this.recuerdame){ this.saveEmail() }
 
+        /* console.log("subscripto correcto:"+res) */
+        Swal.close()
+        this.router.navigateByUrl("/home") 
+    },(err)=>{
+      if(err.error.error.message == "INVALID_PASSWORD"){
+        this.errorMessage = "Contraseña incorrecta"
+      }else{
+        this.errorMessage = "El correo ingresado no se encuentra registrado"
+      }
+      /* console.log(err.error.error.message) */
+      Swal.close()
+
+      Swal.fire({ 
+        title:"Error",
+        text:this.errorMessage,
+        icon:"warning"
+      })
     });
   }
+
+  saveEmail(){
+    localStorage.setItem('email',this.user.email)
+  }
+
 
 }

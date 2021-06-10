@@ -25,8 +25,16 @@
                                 minlength="4" 
                                 name="password" 
                                 [ngModelOptions]="{standalone: false}" type="password" 
-                                class="input-login mb-4 form-control" placeholder="Ingrese su contraseña" 
+                                class="input-login mb-2 form-control" placeholder="Ingrese su contraseña" 
                                 required>
+                            <div class="form-check mb-4">
+                                <input [(ngModel)]="recuerdame" 
+                                        type="checkbox"
+                                        id="recuerdame"
+                                        name="recuerdame" 
+                                        class="form-check-input">
+                                <label for="recuerdame" class="form-check-label gray">Recordar usuario</label>
+                            </div>
                             <input type="submit" value="Entrar" class="form-control bg-primary text-white">
                         </form>
                         <div class="text-center mt-4 gray">

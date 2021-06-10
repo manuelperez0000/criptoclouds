@@ -19,6 +19,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { PoliticsComponent } from './views/politics/politics.component';
 import { DatoscompraComponent } from './views/datoscompra/datoscompra.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
