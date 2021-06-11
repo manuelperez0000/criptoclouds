@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  errorMessage:any;
   user:UserModel = new UserModel;
 
   constructor(private userService:UserService,private router:Router) { }
@@ -49,8 +49,22 @@ export class RegisterComponent implements OnInit {
     this.userService.registro(this.user).subscribe((res)=>{
       console.log("subscripto correcto"+res['email'])
       Swal.close()
-      this.router.navigateByUrl("/home")
-    })
+      this.router.navigateByUrl("/dashboard")
+    },(err)=>{
+      if(err.error.error.message == "EMAIL_EXISTS"){
+        this.errorMessage = "Este correo ya se encuentra registrado"
+      }else{
+        this.errorMessage = "Ocurrio un error desconocido por favor comuniquese con nuestros operadores"
+      }
+      /* console.log(err.error.error.message) */
+      Swal.close()
+
+      Swal.fire({ 
+        title:"Error",
+        text:this.errorMessage,
+        icon:"warning"
+      })
+    });
   }
 
 }

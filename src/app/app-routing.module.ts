@@ -9,18 +9,24 @@ import { RegisterComponent } from './views/register/register.component';
 import { ForgotpassComponent } from './views/forgotpass/forgotpass.component';
 import { PoliticsComponent } from './views/politics/politics.component'; 
 import { DatoscompraComponent } from './views/datoscompra/datoscompra.component';
+import { CalificationsComponent } from './views/califications/califications.component';
+import { ContactComponent } from './views/contact/contact.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path:'',            component:HomeComponent, pathMatch:'full'  },
-  { path:'home',        component:HomeComponent },
-  { path: 'remesas',    component:RemesasComponent },
-  { path: 'navtab',     component:NavtabComponent },
-  { path: 'login',      component:LoginComponent },
-  { path: 'register',   component:RegisterComponent },
-  { path: 'forgotpass', component:ForgotpassComponent },
-  { path: 'politics', component:PoliticsComponent },
-  { path: 'datoscompra', component:DatoscompraComponent },
-  { path:'**', component:DevelopComponent }
+  { path:'',              component:HomeComponent, pathMatch:'full'  },
+  { path:'home',          component:HomeComponent },
+  { path: 'remesas',      component:RemesasComponent },
+  { path: 'navtab',       component:NavtabComponent },
+  { path: 'login',        component:LoginComponent },
+  { path: 'register',     component:RegisterComponent },
+  { path: 'forgotpass',   component:ForgotpassComponent },
+  { path: 'politics',     component:PoliticsComponent },
+  { path: 'datoscompra',  component:DatoscompraComponent },
+  { path: 'contact',      component:ContactComponent },
+  { path: 'califications',component:CalificationsComponent },
+  { path: 'dashboard',    component:DashboardComponent },
+  { path:'**',            component:DevelopComponent }
 ];
 
 @NgModule({

@@ -18,6 +18,9 @@ import { ForgotpassComponent } from './views/forgotpass/forgotpass.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { PoliticsComponent } from './views/politics/politics.component';
 import { DatoscompraComponent } from './views/datoscompra/datoscompra.component';
+import { ContactComponent } from './views/contact/contact.component';
+import { CalificationsComponent } from './views/califications/califications.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -35,7 +38,10 @@ import { DatoscompraComponent } from './views/datoscompra/datoscompra.component'
     ForgotpassComponent,
     MenuComponent,
     PoliticsComponent,
-    DatoscompraComponent
+    DatoscompraComponent,
+    ContactComponent,
+    CalificationsComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

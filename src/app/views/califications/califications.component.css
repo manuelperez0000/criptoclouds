@@ -1,0 +1,10 @@
+i{
+    color:#fff;
+    font-size: 30px;
+    padding: 5px;
+    margin: 5px;
+}
+i:hover{
+    color:rgba(255, 230, 0, 0.87);
+    cursor: pointer;
+}

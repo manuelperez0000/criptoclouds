@@ -9,6 +9,7 @@ import { UserModel } from '../models/user.model';
 export class UserService {
   user:UserModel = new UserModel;
   userToken:any;
+  forgotUrl:string = "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCWNCK0lFUH01MuAzk-42hA3IXYhgE6QQ4"
   loginURL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCWNCK0lFUH01MuAzk-42hA3IXYhgE6QQ4'
   registerURL = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCWNCK0lFUH01MuAzk-42hA3IXYhgE6QQ4'
 
@@ -41,6 +42,22 @@ export class UserService {
       console.log(resp.idToken)
       this.guardarToken(resp.idToken)
       console.log("registrado con exito")
+      return resp
+    }))
+  }
+
+  forgotPass(user:UserModel){
+    var userData = {
+      email:user.email,
+      requestType:"PASSWORD_RESET"
+      
+    }
+    console.log("forgot service")
+   return this.http.post(this.forgotUrl,userData, {headers:{
+    "X-Firebase-Locale":"es"
+  }})
+    .pipe( map((resp:any)=>{
+      console.log("Recuperando contraseña")
       return resp
     }))
   }

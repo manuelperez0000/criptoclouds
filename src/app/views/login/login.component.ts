@@ -3,7 +3,7 @@ import  Swal  from 'sweetalert2';
 import { UserService } from '../../services/user.service';
 import { UserModel } from '../../models/user.model';
 import { NgForm } from '@angular/forms';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -25,14 +25,9 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
-
   onSubmit( form:NgForm ){
     
-
-
     if(form.invalid){ return }
-
     
     Swal.fire({ 
       title:"Cargando",
@@ -49,7 +44,7 @@ export class LoginComponent implements OnInit {
 
         /* console.log("subscripto correcto:"+res) */
         Swal.close()
-        this.router.navigateByUrl("/home") 
+        this.router.navigateByUrl("/dashboard") 
     },(err)=>{
       if(err.error.error.message == "INVALID_PASSWORD"){
         this.errorMessage = "Contraseña incorrecta"

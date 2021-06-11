@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+<div style="height: 90vh;" class="nube">
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-8 col-md-5 py-4">
+            <h1 class="text-white text-center">
+                Formulario de contacto
+            </h1>
+        </div>
+        <div class="col-7"></div>
+        <div class="col-12 col-sm-8 col-md-5">
+            <form (ngSubmit)="onSubmit( f )" #f="ngForm" >
+                <div *ngIf="f.submitted && f.controls['email'].errors" 
+                     class="animate__animated animate__headShake alert p-2 alert-danger text-small alert-login" role="alert">
+                    <i class="bi bi-exclamation-diamond-fill"></i> Debe proporcionar un email valido
+                </div>
+                <input  [(ngModel)]="user.email" 
+                        name="email" 
+                        [ngModelOptions]="{standalone: false}" 
+                        type="email" 
+                        email 
+                        class="input-login form-control mb-3" 
+                        placeholder="Ingrese su Email" 
+                        required>
+                <div *ngIf="f.submitted && f.controls['nombre'].errors" 
+                        class="animate__animated animate__headShake alert p-2 alert-danger text-small alert-login" role="alert">
+                        <i class="bi bi-exclamation-diamond-fill"></i> Su nombre debe ser de 4 caracteres como minimo
+                </div>
+                <input [(ngModel)]="user.nombre"
+                        name="nombre" 
+                        type="text" 
+                        required
+                        minlength="4" 
+                        class="mb-4 input-login form-control" placeholder="Nombre completo">
+               
+                <textarea [(ngModel)]="user.textarea"
+                        required
+                        name="comentario"
+                        minlength="3"
+                        class="form-control" 
+                        placeholder="Ingrese sus comentarios..."
+                        rows="3">
+                </textarea>
+                
+                <input type="submit" value="Enviar" class="form-control bg-primary text-white mt-4">
+            </form>
+        </div>
+    </div>
+</div>
+</div>

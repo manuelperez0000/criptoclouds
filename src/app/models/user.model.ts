@@ -6,4 +6,5 @@ export class UserModel{
     telefono:string="";
     password:string="";
     password2:string="";
+    textarea:any;
 }

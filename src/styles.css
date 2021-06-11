@@ -182,16 +182,15 @@ box-shadow: inset -5px 31px 50px 12px rgba(0,0,0,0.2);
     top: 0px;
     right: 0px;
 }
-.boton-x{
+.boton-x2{
     background-color: rgba(0, 0, 0, 0);
-    border: 2px solid rgba(0, 0, 0, 0);
-    border-radius: 50px;
+    border: 0px solid rgba(0, 0, 0, 0);
+    border-radius: 50%;
     float: right;
-    color: var(--griz-o);
+    color: var(--text-gray);
 }
-.boton-x:hover{
-    border: 2px solid rgba(63, 128, 248, 0.424);
-    background-color: rgba(93, 217, 255, 0.164);
+.boton-x2:hover{
+    color:rgba(63, 128, 248, 0.424);
 
 }
 .loading{
@@ -407,18 +406,7 @@ body{
   top: 0px;
   right: 0px;
 }
-.boton-x{
-  background-color: rgba(0, 0, 0, 0);
-  border: 2px solid rgba(0, 0, 0, 0);
-  border-radius: 50px;
-  float: right;
-  color: var(--griz-o);
-}
-.boton-x:hover{
-  border: 2px solid rgba(63, 128, 248, 0.424);
-  background-color: rgba(93, 217, 255, 0.164);
 
-}
 .griz-o{
   color: var(--griz-o);
 }
