@@ -12,6 +12,7 @@ import { DatoscompraComponent } from './views/datoscompra/datoscompra.component'
 import { CalificationsComponent } from './views/califications/califications.component';
 import { ContactComponent } from './views/contact/contact.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { DashGuard } from './guards/dash.guard';
 
 const routes: Routes = [
   { path:'',              component:HomeComponent, pathMatch:'full'  },
@@ -22,10 +23,10 @@ const routes: Routes = [
   { path: 'register',     component:RegisterComponent },
   { path: 'forgotpass',   component:ForgotpassComponent },
   { path: 'politics',     component:PoliticsComponent },
-  { path: 'datoscompra',  component:DatoscompraComponent },
+  { path: 'datoscompra/:ves/:coin/:amount',  component:DatoscompraComponent },
   { path: 'contact',      component:ContactComponent },
   { path: 'califications',component:CalificationsComponent },
-  { path: 'dashboard',    component:DashboardComponent },
+  { path: 'dashboard',    component:DashboardComponent, canActivate: [ DashGuard ] },
   { path:'**',            component:DevelopComponent }
 ];
 

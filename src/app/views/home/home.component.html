@@ -13,7 +13,10 @@
           <h1 class="text-white title pb-3">Convierte tus Bolivares en criptos y divisas</h1>
           <p class="text-white pb-3">compra y vende <b class="yellow">Criptomonedas</b> de la forma mas rapida y segura
           </p>
-          <button [routerLink]="['/login']" class="btn btn-primary form-control m-300 text-white"> Comenzar </button>
+          <button [routerLink]="[comenzar]" 
+                  class="btn btn-primary form-control m-300 text-white"> 
+              Comenzar 
+          </button>
         </div>
         <div class="text-white">
           Precio del dolar:
@@ -118,8 +121,8 @@
 
             <div class="">
               <div class="row">
-                <div class="col-12 py-3 mt-4">
-                  <button [routerLink]="['/datoscompra']"  class="btn btn-success form-control">
+                <div class="col-12 py-3 mt-1">
+                  <button (click)="procCompra()" class="btn btn-success form-control">
                     Continuar
                   </button>
                 </div>

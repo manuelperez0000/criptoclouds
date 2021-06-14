@@ -1,2 +1,109 @@
-<app-navbar></app-navbar>
-recoleccion de datos
+
+  <div class="nube min100vh">
+    <app-navbar></app-navbar>
+    <div class="container pt-3 pb-3">
+      <div class="row">
+
+        <div class="col-12 col-md-6 pb-4">
+          <h2 class="text-white title">Comprar Criptos</h2>
+          <div class="text-white">
+            Usted debe enviar:
+            <h2>
+              {{ ves | currency:' Bs. ' }}
+            </h2>
+          </div>
+          <div class="text-white">
+            Recibira:
+            <h2 class="text-yellow">
+            {{ coin | uppercase }} {{ amount }}
+            </h2>
+          </div>
+          <div class="mb-1 bg-light p-3 radius">
+            <p class=" pb-3"> 
+              Usted tiene 10 minutos para completar la transaccion
+            </p>
+            <h3>Bancos disponible</h3>
+            <p class=" pb-3"> 
+              Elija el banco de donde enviara
+            </p>
+            <select [(ngModel)]="banco" class="form-control">
+              <option value="ven">Venezuela</option>
+              <option value="ban">Banesco</option>
+              <option value="bod">BOD</option>
+              <option value="pag">PagoMovil</option>
+            </select>
+            
+            <div *ngIf="banco == 'ven'" class="card mb-3 mt-2">
+              <div class="card-header text-white bg-danger">Banco  De Venezuela</div>
+              <div class="card-body">
+                <div class="w-bancos-{{banco}} px-2">
+                  <b>Cuenta:</b> 0102003156545654<br>
+                 <b>CI:</b> 84565465<br>
+                  <b>Tipo:</b> Corriente<br>
+                  <b>Titular:</b> Leonel Patiño
+                  </div>
+              </div>
+            </div>
+
+            <div *ngIf="banco == 'ban'" class="card mb-3 mt-2">
+              <div class="card-header text-white bg-success">
+                Banesco</div>
+              <div class="card-body">
+                <div class="w-bancos-{{banco}} px-2">
+                  <b>Cuenta:</b> 0131003156545654<br>
+                 <b>CI:</b> 84565465<br>
+                  <b>Tipo:</b> Corriente<br>
+                  <b>Titular:</b> Leonel Patiño
+                  </div>
+              </div>
+            </div>
+
+            <div *ngIf="banco == 'bod'" class="card mb-3 mt-2">
+              <div class="card-header text-white bg-primary">
+                BOD</div>
+              <div class="card-body">
+                <div class="w-bancos-{{banco}} px-2">
+                  <b>Cuenta:</b> 0131003156545654<br>
+                 <b>CI:</b> 84565465<br>
+                  <b>Tipo:</b> Corriente<br>
+                  <b>Titular:</b> Leonel Patiño
+                  </div>
+              </div>
+            </div>
+
+            <div *ngIf="banco == 'pag'" class="card mb-3 mt-2">
+              <div class="card-header text-white bg-primary">
+                PagoMovil</div>
+              <div class="card-body">
+                <div class="w-bancos-{{banco}} px-2">
+                  <b>Telfeno:</b> 04141235456<br>
+                 <b>CI:</b> 84565465<br>
+                  <b>Titular:</b> Leonel Patiño
+                  </div>
+              </div>
+            </div>
+
+            <h4 class="">Wallet donde recibe : BTC</h4>
+            
+            <!-- monto de la transeferencia
+            <input type="text" name="monto" class="form-control" >
+            numero de referencia
+            <input type="text" name="ref" class="form-control"> 
+            wallet receptora-->
+            <input type="text" name="wallet" id="" class="form-control mt-2">
+            
+          </div>
+
+          
+          
+          <button [routerLink]="['https://api.whatsapp.com/send?phone=584141220527&text=Manauel2121-Perez-Compra4']" class="btn btn-success mt-3">Confirma5654r</button>
+        </div>
+        <div class="col-12 col-md-6 text-white py-2">
+          
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <app-footer></app-footer>

@@ -88,13 +88,13 @@ background: linear-gradient(0deg, rgba(64,126,205,1) 10%, rgba(47,96,159,1) 90%)
   font-size: 40px;
 }
 .yellow{
-  color: yellow;
+  color: rgb(255, 221, 28);
 }
 .line-bottom{
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 .btn-primary{
-  background-color: var(--btn-primary);
+  background-color: var(--primary) !important;
   border: 1px solid rgba(255, 255, 255,0.2);
 }
 .btn-primary:hover{
@@ -317,6 +317,9 @@ body{
 .nube.login{
   height: 100vh;
 }
+.min100vh{
+  min-height: 90vh;
+}
 @keyframes nube {
   0%{
     background-position-x: 1200px;
@@ -476,4 +479,88 @@ body{
 .alert-login{
     animation-duration: 0.8s; /* don't forget to set a duration! */
   
+}
+.saldox{
+  font-size: 12px;
+  color: rgba(251, 251, 251, 0.726);
+}
+.saldoUsd{
+  font-size: 30px;
+  font-weight: 400;
+}
+.min80vh{
+  min-height: 80vh;
+}
+.saldoVes{
+  font-size: 14px;
+  color: rgba(251, 251, 251, 0.726);
+}
+.w-caja{
+  
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  min-height:150px;
+  border-radius: 5px;
+}
+.caja{
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 10%, rgba(255, 255, 255, 0.5) 90%);
+  border-radius: 5px;
+  padding:110px 10px 10px 10px;
+  min-height:150px;
+  text-align:left;
+}
+.caja:hover{
+  border: 1px solid rgba(0, 59, 107, 0.835);
+  cursor: pointer;
+}
+.nombre-caja{
+  font-size: 14px;
+  line-height: 15px;
+}
+.txt-1{
+  font-size: 16px;
+  font-weight: normal;
+  color: var(--primary);
+}
+.txt-2{
+  font-size: 22px;
+  color: var(--primary);
+  font-weight: bold;
+
+}
+.btn-compra{
+  background-image:url('./assets/criptos.png');
+}
+.btn-resguarda{
+  background-image:url('./assets/resguarda.png');
+}
+.btn-remesas{
+  background-image:url('./assets/remesas.png');
+}
+
+.br5{
+  border-radius: 5px;
+}
+.text-primary{
+  color: var(--primary) !important;
+}
+.radius{
+  border-radius: 5px !important;
+}
+.border-top2{
+  border-top:1px solid rgba(255, 255, 255, 0.356);
+}
+.w-bancos-ven{
+  border-left:2px solid rgb(218, 9, 9);
+}
+.w-bancos-ban{
+  border-left:2px solid rgb(8, 105, 4);
+}
+.w-bancos-bod{
+  border-left:2px solid rgb(10, 64, 182);
+}
+.w-bancos-pag
+{
+  border-left:2px solid rgb(0, 19, 128);
 }

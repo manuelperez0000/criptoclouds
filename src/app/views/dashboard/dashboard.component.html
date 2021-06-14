@@ -1,1 +1,70 @@
-<p>dasboard works!</p>
+<app-navbar></app-navbar>
+
+<div class="container min80vh mt-3 mb-5">
+    <div class="row">
+        <div class="col-12 col-sm-8 col-xl-5">
+            <div class="row">
+                <div class="col-12 ">
+                    <div class="p-3 bg-light br5">
+                        <h1 class="text-primary ">Dashboard</h1>
+                    <div class="bg-success p-3 br5">
+                        <p class="text-white mb-3 mt-1">
+                            <b>Hola </b> Manuel Perez
+                        </p>
+                        <p class="saldox mt-2">
+                            Saldo <b class="text-white">Nimbus Wallet</b>
+                        </p>
+                        <p class="text-white mb-2">
+                            <b class="saldoUsd">$4.56</b><br> 
+                            <b class="saldoVes">
+                                Bs. 12.565.456,45
+                            </b>
+                        </p>
+                        <button class="btn btn-warning text-white">Retirar Fondos</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-2 mt-1">
+               
+                <div (click)="alerta()" class="col-6">
+                    <div class="w-caja btn-compra">
+                        <div class="caja w-100"> 
+                            <div class="nombre-caja text-right px-2 pb-2">
+                               <b class="txt-1"> Compra y vende </b> <br>
+                               <b class="txt-2"> Criptos </b> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="w-caja btn-resguarda">
+                        <div class="caja w-100"> 
+                            <div class="nombre-caja text-right px-2 pb-2">
+                               <b class="txt-1"> Resguarda </b> <br>
+                               <b class="txt-2"> Tu Dinero </b> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="w-caja btn-remesas">
+                        <div class="caja w-100"> 
+                            <div class="nombre-caja text-right px-2 pb-2">
+                               <b class="txt-1"> Enviar </b> <br>
+                               <b class="txt-2"> Remesas </b> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<app-footer></app-footer>

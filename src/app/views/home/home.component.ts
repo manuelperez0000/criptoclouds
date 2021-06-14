@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PrecioDolarService } from '../../services/precio-dolar.service';
 import { CoinsPricesService } from '../../services/coins-prices.service';
+import { IsloginService } from 'src/app/services/islogin.service';
+import { Router } from '@angular/router';
 /* import { Calc } from '../../models/calc'; */
 
 @Component({
@@ -11,14 +13,12 @@ import { CoinsPricesService } from '../../services/coins-prices.service';
 export class HomeComponent implements OnInit {
   vesModel:any
   coinModel:any
+
   decimalVes:any = 0
   decimalCoin:any = 0
-
   btnChange:boolean = true
-
   porcentage:any = 5
   decimalAux:any = 0
-
   loading:boolean = true
   loadingCripto:boolean = true
   dolar:any = {precio:0}
@@ -26,8 +26,9 @@ export class HomeComponent implements OnInit {
   cripto:number = 0
   symbol:string = "BTC"
   changeValor:any = 0
+  comenzar:string = "/dashboard"
 
-  constructor(private precio:PrecioDolarService,private coins:CoinsPricesService ) {    
+  constructor(private router:Router,private islogin:IsloginService, private precio:PrecioDolarService,private coins:CoinsPricesService ) {    
       this.precio.getPrecioDolar().subscribe((resp:any)=>{
         this.dolar = resp
         this.loading = false
@@ -40,17 +41,26 @@ export class HomeComponent implements OnInit {
       })
    }
 
-  ngOnInit(){}
+  ngOnInit(){
+    if(!this.islogin.islog()){
+      this.comenzar="/login"
+    }else{
+      this.comenzar = "/dashboard"
+    }
+  }
+
+  procCompra(){
+    console.log("iniciando")
+    this.router.navigateByUrl('/datoscompra/'+this.vesModel+'/'+this.symbol+'/'+this.coinModel)
+  }
 
   vesToCoin(){
     this.decimalAux = (parseFloat(this.vesModel)/this.dolar.precio/this.changeValor)
-
     if(this.btnChange){
       this.decimalVes = this.decimalAux-(this.decimalAux/100*this.porcentage)
     }else{
       this.decimalVes = this.decimalAux+(this.decimalAux/100*this.porcentage)
     }
-
     this.coinModel = this.ochoDecimal(this.decimalVes)
     console.log(this.vesModel)
   }

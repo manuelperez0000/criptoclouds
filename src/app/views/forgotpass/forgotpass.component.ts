@@ -14,10 +14,13 @@ export class ForgotpassComponent implements OnInit {
   user:UserModel = new UserModel;
 
   constructor(private userService:UserService) {
-    this.user.email ="manuelperez.0000@gmail.com"
    }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    if(localStorage.getItem('email')){
+      this.user.email = localStorage.getItem('email')
+    }
+  }
 
   forgot(form:NgForm){
     if(form.invalid){ return }
