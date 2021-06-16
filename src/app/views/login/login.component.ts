@@ -41,10 +41,14 @@ export class LoginComponent implements OnInit {
     .subscribe((res)=>{
       
       if(this.recuerdame){ this.saveEmail() }
-
-        /* console.log("subscripto correcto:"+res) */
-        Swal.close()
-        this.router.navigateByUrl("/dashboard") 
+        localStorage.setItem('sessionEmail',res.email)
+        console.log("subscripto correcto:"+res.email )
+        if(res.email != ""){
+          this.router.navigateByUrl("/dashboard") 
+          Swal.close()
+        }else{
+          Swal.close()
+        }
     },(err)=>{
       if(err.error.error.message == "INVALID_PASSWORD"){
         this.errorMessage = "Contraseña incorrecta"

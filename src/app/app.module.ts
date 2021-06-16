@@ -21,6 +21,7 @@ import { DatoscompraComponent } from './views/datoscompra/datoscompra.component'
 import { ContactComponent } from './views/contact/contact.component';
 import { CalificationsComponent } from './views/califications/califications.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { DatosventaComponent } from './views/datosventa/datosventa.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
     DatoscompraComponent,
     ContactComponent,
     CalificationsComponent,
-    DashboardComponent
+    DashboardComponent,
+    DatosventaComponent
   ],
   imports: [
     BrowserModule,

@@ -41,6 +41,9 @@
       
           <button *ngIf="!login" routerLink="/register" type="button" class="list-group-item list-group-item-action griz-o">
             <i class="bi bi-file-earmark-person"></i> Registro</button>
+          
+          <button *ngIf="login" routerLink="/dashboard" type="button" class="list-group-item list-group-item-action griz-o">
+              <i class="bi bi-speedometer"></i> Dashboard</button>
       
         </div>
       

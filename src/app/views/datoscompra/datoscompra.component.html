@@ -26,7 +26,7 @@
             <p class=" pb-3"> 
               Elija el banco de donde enviara
             </p>
-            <select [(ngModel)]="banco" class="form-control">
+            <select id="banco" [(ngModel)]="banco" class="form-select">
               <option value="ven">Venezuela</option>
               <option value="ban">Banesco</option>
               <option value="bod">BOD</option>
@@ -83,20 +83,29 @@
               </div>
             </div>
 
-            <h4 class="">Wallet donde recibe : BTC</h4>
+            <h4 class="">Wallet donde recibe : {{ coin }}</h4>
             
             <!-- monto de la transeferencia
             <input type="text" name="monto" class="form-control" >
             numero de referencia
             <input type="text" name="ref" class="form-control"> 
             wallet receptora-->
-            <input type="text" name="wallet" id="" class="form-control mt-2">
+            
+            <input [(ngModel)]="wallet" type="text" name="wallet" id="wallet" class="form-control mt-2">
+
+            <input [(ngModel)]="email" type="hidden" name="email" id="email">
+            <input [(ngModel)]="coin" type="hidden" name="email" id="coin">
+            <input [(ngModel)]="ves" type="hidden" name="email" id="ves">
+            <input [(ngModel)]="amount" type="hidden" name="email" id="amount">
+           
+            <button onclick="sendWathsapp(0)" class="btn btn-success mt-3">Continuar con el cajero</button>
             
           </div>
 
           
+
           
-          <button [routerLink]="['https://api.whatsapp.com/send?phone=584141220527&text=Manauel2121-Perez-Compra4']" class="btn btn-success mt-3">Confirma5654r</button>
+         
         </div>
         <div class="col-12 col-md-6 text-white py-2">
           

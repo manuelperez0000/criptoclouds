@@ -7,4 +7,5 @@ export class UserModel{
     password:string="";
     password2:string="";
     textarea:any;
+    saldoNimbus:any=0;
 }

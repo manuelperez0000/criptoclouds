@@ -1,0 +1,82 @@
+
+  <div class="nube min100vh">
+    <app-navbar></app-navbar>
+    <div class="container pt-3 pb-3">
+      <div class="row">
+
+        <div class="col-12 col-md-6 pb-4">
+          <h2 class="text-white title">Comprar Criptos</h2>
+          <div class="text-white">
+            Usted debe enviar:
+            <h2>
+                {{ coin | uppercase }} {{ amount }}
+            </h2>
+          </div>
+          <div class="text-white">
+            Recibira:
+            <h2 class="text-yellow">
+                {{ ves | currency:' Bs. ' }}
+            </h2>
+          </div>
+          <div class="mb-1 bg-light p-3 radius">
+            <p class=" pb-3"> 
+              Tiene 10 minutos para completar la transaccion
+            </p>
+            
+            
+            
+            
+            <div class="card mb-">
+              <div class="card-header text-white bg-primary">Proporciones sus datos</div>
+              <div class="card-body">
+                <div class="w-bancos-{{banco}} px-2">
+                  <b>Indique su banco:</b>
+                    <select id="banco" [(ngModel)]="banco" class="form-select">
+                      <option value="ven">Venezuela</option>
+                      <option value="ban">Banesco</option>
+                      <option value="bod">BOD</option>
+                      <!-- <option value="pag">PagoMovil</option> -->
+                    </select>
+                    <b>Tipo de cuenta:</b>
+                    <select [(ngModel)]="tipo"  class="form-select" name="tipoCuenta" id="tipo">
+                      <option value="corriente">Coriente</option>
+                      <option value="ahorro">Ahorro</option>
+                    </select>
+                    <b>Numero de cuenta:</b> 
+                    <input [(ngModel)]="nroCuenta" class="form-control" type="text" name="nroCuenta" id="nroCuenta">
+
+                    <b>Cedula de identidad:</b>
+                    <input [(ngModel)]="cedula" class="form-control" type="text" name="cedula" id="cedula">
+                    
+                    <!-- <b *ngIf="banco =='pag'">Telefono:</b>
+                    <input *ngIf="banco =='pag'" type="text" name="telefono" id="telefono" class="form-control">
+              -->      
+                    <b>Nombre del titular:</b>
+                    <input [(ngModel)]="titular" class="form-control" type="text" name="titular" id="titular">
+                  </div>
+              </div>
+            </div>
+
+            <input [(ngModel)]="email" type="hidden" name="email" id="email">
+            <input [(ngModel)]="coin" type="hidden" name="coin" id="coin">
+            <input [(ngModel)]="amount" type="hidden" name="amount" id="amount">
+            <input [(ngModel)]="ves" type="hidden" name="ves" id="ves">
+           
+            <button onclick="sendWathsapp(1)" class="btn btn-success mt-3">Continuar con el cajero</button>
+            
+          </div>
+
+          
+
+          
+         
+        </div>
+        <div class="col-12 col-md-6 text-white py-2">
+          
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <app-footer></app-footer>

@@ -9,16 +9,16 @@
                         <h1 class="text-primary ">Dashboard</h1>
                     <div class="bg-success p-3 br5">
                         <p class="text-white mb-3 mt-1">
-                            <b>Hola </b> Manuel Perez
+                            <b>Hola </b> {{user.nombre}}
                         </p>
                         <p class="saldox mt-2">
                             Saldo <b class="text-white">Nimbus Wallet</b>
                         </p>
                         <p class="text-white mb-2">
-                            <b class="saldoUsd">$4.56</b><br> 
-                            <b class="saldoVes">
-                                Bs. 12.565.456,45
-                            </b>
+                            <b class="saldoUsd">{{ user.saldoNimbus | currency}}</b><br> 
+                            <!-- <b class="saldoVes">
+                                Bs. {{ dolar.precio }}
+                            </b> -->
                         </p>
                         <button class="btn btn-warning text-white">Retirar Fondos</button>
                     </div>
@@ -26,8 +26,8 @@
                 </div>
             </div>
             <div class="row g-2 mt-1">
-               
-                <div (click)="alerta()" class="col-6">
+                
+                <div  class="col-6">
                     <div class="w-caja btn-compra">
                         <div class="caja w-100"> 
                             <div class="nombre-caja text-right px-2 pb-2">

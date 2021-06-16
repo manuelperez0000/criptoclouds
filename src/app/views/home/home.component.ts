@@ -3,6 +3,7 @@ import { PrecioDolarService } from '../../services/precio-dolar.service';
 import { CoinsPricesService } from '../../services/coins-prices.service';
 import { IsloginService } from 'src/app/services/islogin.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 /* import { Calc } from '../../models/calc'; */
 
 @Component({
@@ -11,13 +12,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  vesModel:any
+  vesModel:any="";
   coinModel:any
 
   decimalVes:any = 0
   decimalCoin:any = 0
   btnChange:boolean = true
+
   porcentage:any = 5
+
   decimalAux:any = 0
   loading:boolean = true
   loadingCripto:boolean = true
@@ -39,8 +42,7 @@ export class HomeComponent implements OnInit {
         console.log(res)
         this.loadingCripto = false
       })
-   }
-
+   } 
   ngOnInit(){
     if(!this.islogin.islog()){
       this.comenzar="/login"
@@ -50,8 +52,35 @@ export class HomeComponent implements OnInit {
   }
 
   procCompra(){
-    console.log("iniciando")
-    this.router.navigateByUrl('/datoscompra/'+this.vesModel+'/'+this.symbol+'/'+this.coinModel)
+    if(this.islogin.islog()){
+      var montoBs
+    if(this.vesModel != ""){
+      montoBs = parseInt(this.vesModel)
+      if(montoBs<35000000){
+        Swal.fire({
+          title:"Discupe",
+          icon:"warning",
+          text:"El monto minimo es de Bs. 35.000.000,00"
+        })
+      }else{
+        if(this.btnChange){
+          this.router.navigateByUrl('/datoscompra/'+this.vesModel+'/'+this.symbol+'/'+this.coinModel)
+        }else{
+          this.router.navigateByUrl('/datosventa/'+this.vesModel+'/'+this.symbol+'/'+this.coinModel)
+        }
+      }
+    }else{
+      Swal.fire({
+        title:"Discupe",
+        icon:"warning",
+        text:"El monto minimo es de Bs. 35.000.000,00"
+      })
+    }
+    }else{
+      this.router.navigateByUrl('/login')
+    }
+    
+    
   }
 
   vesToCoin(){

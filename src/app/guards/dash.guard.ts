@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { CanActivate } from '@angular/router';
 export class DashGuard implements CanActivate {
   storage:any;
 
-  constructor(){
+  constructor(private router:Router){
     this.storage = localStorage.getItem('token')
   }
 
@@ -17,6 +18,7 @@ export class DashGuard implements CanActivate {
       return true;
       
     }else{
+      this.router.navigateByUrl('/login');
       console.log("Permiso denegado");
       return false;
     }
