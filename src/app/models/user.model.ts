@@ -1,11 +1,11 @@
 export class UserModel{
     email:any;
-    nombre:string="";
-    nacionalidad:string="";
-    cedula:string="";
-    telefono:string="";
-    password:string="";
-    password2:string="";
+    nombre:any;
+    nacionalidad:any;
+    cedula:any;
+    telefono:any;
+    password:any;
+    password2:any;
     textarea:any;
     saldoNimbus:any=0;
 }

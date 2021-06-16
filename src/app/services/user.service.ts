@@ -105,11 +105,11 @@ export class UserService {
   }
 
   logOut(){
-    localStorage.removeItem('token')
-    localStorage.removeItem('sessionEmail')
     localStorage.removeItem('sessionTelefono')
     localStorage.removeItem('sessionCedula')
     localStorage.removeItem('sessionNombre')
+    localStorage.removeItem('token')
+    localStorage.removeItem('sessionEmail')
   }
 
   getUser(){

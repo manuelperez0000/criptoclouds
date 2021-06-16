@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { UserModel } from '../../models/user.model';
+import { PrecioDolarService } from '../../services/precio-dolar.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,16 +13,49 @@ export class DashboardComponent implements OnInit {
   user:UserModel = new UserModel
   email:any;
   dolar:any;
-  constructor( private userService:UserService ) {
-    
+  monto:any;
+  montoRetiro:any;
+  calculado:boolean=false;
+  loading:boolean = true;
+  constructor(private precioDolar:PrecioDolarService, private userService:UserService ) {
+    this.precioDolar.getPrecioDolar().subscribe((res)=>{
+      this.dolar = res
+      this.loading = false
+    })
    }
 
   ngOnInit(): void {
     this.userService.getUser().subscribe((res)=>{
       this.user = res
-       console.log("respuesta de subscripcion:"+res)
+      localStorage.setItem('sessionNombre',res.nombre)
+      localStorage.setItem('sessionCedula',res.cedula)
+      localStorage.setItem('sessionTelefono',res.telefono)
+      console.log("respuesta de subscripcion:"+res)
     })
+
+    this.user.nombre = localStorage.getItem('sessionNombre')
+
+   
     
+  }
+
+  retiroVes(){
+    var ret = parseFloat(this.montoRetiro)
+    if(this.montoRetiro){
+      if(ret<5){
+        alert("Monto minimo para retirar son $USD.5")
+      }else{
+        if(ret > this.user.saldoNimbus){
+          alert("Su saldo Nimbus no es suficiente:"+this.user.saldoNimbus)
+        }else{
+          this.monto = this.dolar.precio*this.montoRetiro
+          this.calculado = true
+        }
+      }
+      
+    }else{
+      alert("Debe ingresar un monto valido")
+    }
   }
 
 }

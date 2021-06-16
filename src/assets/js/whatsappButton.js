@@ -31,3 +31,14 @@ function sendWathsapp(tipo){
     }
 
 }
+
+function calcularRetiro(){
+
+    var monto = document.getElementById('monto').value;
+    var retiro = document.getElementById('retiro').value;
+
+    var direccion3 = "https://api.whatsapp.com/send?phone=584141220527&text=Nombre-Cliente----Retiro-saldo-nimbus:%20$USD"+retiro+"--Total-en-Bs:%20"+monto;
+
+    direccion3 = direccion3.toString();
+    window.location.href = direccion3;
+}
