@@ -32,7 +32,7 @@ function sendWathsapp(tipo){
 
 }
 
-function calcularRetiro(){
+/* function continuarAlCajero(){
 
     var monto = document.getElementById('monto').value;
     var retiro = document.getElementById('retiro').value;
@@ -41,4 +41,4 @@ function calcularRetiro(){
 
     direccion3 = direccion3.toString();
     window.location.href = direccion3;
-}
+} */

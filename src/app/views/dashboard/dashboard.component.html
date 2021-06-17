@@ -17,7 +17,6 @@
                             <p class="text-white mb-2">
                                 <b class="saldoUsd">{{ user.saldoNimbus | currency: '$USD '}}</b>
                             </p>
-                            
                         </div>
                         <div class="p-3 mt-3 radius shadow">
                             <h5 class="text-primary mb-1" >Retirar saldo <b>Nimbus</b></h5>
@@ -27,13 +26,13 @@
                             </p>
                             <div class="btn-group mb-3 w-100" role="group" aria-label="Basic example">
                                 <div class="btn btn-success ">$USD</div>
-                                <input id="retiro" [(ngModel)]="montoRetiro" type="text" class="form-control saldoRetiro" placeholder="Monto a retirar">
+                                <input (keyup)="onChange()" id="retiro" [(ngModel)]="montoRetiro" type="text" class="form-control saldoRetiro" placeholder="Monto a retirar">
                                 <button (click)="retiroVes()" class="btn btn-success">Calcular</button>
                             </div>
                             <div *ngIf="calculado">
                                 <h4 class="text-success">{{ monto | currency:'Bs. ' }}</h4>
                                 <input type="hidden" [(ngModel)]="monto" id="monto">
-                                <button onclick="calcularRetiro()" class="btn btn-success mt-2">Continuar al cajero</button>
+                                <button (click)="continuarAlCajero()" class="btn btn-success mt-2">Continuar al cajero</button>
                             </div>
                             <!-- <button class="btn btn-warning text-white">Retirar Fondos</button> -->
                         </div>

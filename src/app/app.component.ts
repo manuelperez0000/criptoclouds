@@ -9,7 +9,7 @@ import { UserService } from './services/user.service';
 export class AppComponent implements OnInit {
   title = 'ng-app';
   objCalc:any;
-  constructor( private user:UserService ){
+  constructor( private user:UserService){
   
   }
 
