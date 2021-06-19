@@ -3,25 +3,35 @@
     <app-navbar></app-navbar>
     <div class="container pt-3 pb-3">
       <div class="row">
- 
+
         <div class="col-12 col-md-6 pb-4">
-          <h2 class="text-white title">Comprar Criptos</h2>
-          <div class="text-white">
-            Usted debe enviar:
-            <h2>
-              {{ ves | currency:' Bs. ' }}
-            </h2>
-          </div>
-          <div class="text-white">
-            Recibira:
-            <h2 class="text-yellow">
-            {{ coin | uppercase }} {{ amount }}
-            </h2>
-          </div>
+          <h2 class="text-white title">Resguarda</h2>
+          <p class="text-white mb-3">
+              Con tu billetera Nimbus puedes cambiar tus Bolivares
+               a Dolares y retirarlos cuando los necesites</p>
+          
           <div class="mb-1 bg-light p-3 radius">
-            <p class=" pb-3"> 
-              Usted tiene 10 minutos para completar la transaccion
-            </p>
+            <div> Envias 
+                <div class="input-group pb-2">
+                   
+                    <input  [(ngModel)]="vesModel"
+                            (keyup)="calcula()"
+                            type="number" 
+                            class="form-control imput-change">
+                   
+                    <div class="btn-group" role="group">
+                        <button type="button" class="border-light btn btn-light select-money2 min-btn-calc">
+                            <img class="img-flag" src="../../../assets/img-monedas/ve.svg" alt="" srcset="">
+                            VES
+                        </button>
+                    </div>
+                </div>
+                Recibes
+                <h2>Saldo Nimbus: {{ recibes | currency:' ' }}</h2>
+                <p>Cotizacion del dolar: {{ preciodolar.precio | currency:'Bs.' }}</p>
+                <hr>
+
+            </div>
             <h3>Bancos disponible</h3>
             <p class=" pb-3"> 
               Elija el banco de donde enviara
@@ -82,23 +92,8 @@
                   </div>
               </div>
             </div>
-
-            <h4 class="">Wallet donde recibe : {{ coin }}</h4>
-            
-            <!-- monto de la transeferencia
-            <input type="text" name="monto" class="form-control" >
-            numero de referencia
-            <input type="text" name="ref" class="form-control"> 
-            wallet receptora-->
-            
-            <input [(ngModel)]="wallet" type="text" name="wallet" id="wallet" class="form-control mt-2">
-
-            <input [(ngModel)]="email" type="hidden" name="email" id="email">
-            <input [(ngModel)]="coin" type="hidden" name="email" id="coin">
-            <input [(ngModel)]="ves" type="hidden" name="email" id="ves">
-            <input [(ngModel)]="amount" type="hidden" name="email" id="amount">
            
-            <button onclick="sendWathsapp(0)" class="btn btn-success mt-3">Continuar con x el cajero</button>
+            <button (click)="sendWathsapp()" class="btn btn-success mt-3">Continuar al cajero</button>
             
           </div>
          

@@ -318,7 +318,7 @@ body{
   height: 100vh;
 }
 .min100vh{
-  min-height: 90vh;
+  min-height: 90vh !important;
 }
 @keyframes nube {
   0%{
@@ -597,4 +597,8 @@ body{
 }
 .text-small{
   font-size: 12px;
+}
+.btn-agregarSaldo{
+  color:rgb(50,60,70);
+  background-color: rgb(250, 222, 92)
 }

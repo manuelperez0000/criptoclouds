@@ -14,17 +14,16 @@ export class DashboardComponent implements OnInit {
   email:any;
   dolar:any;
   monto:any;
+  selectBank:string="ven";
   montoRetiro:any;
   calculado:boolean=false;
   loading:boolean = true;
+  datosBancarios:any;
   constructor(private precioDolar:PrecioDolarService, private userService:UserService ) {
     this.precioDolar.getPrecioDolar().subscribe((res)=>{
       this.dolar = res
       this.loading = false
     })
-   }
-
-  ngOnInit(): void {
     this.userService.getUser().subscribe((res)=>{
       this.user = res
       localStorage.setItem('sessionNombre',res.nombre)
@@ -34,6 +33,11 @@ export class DashboardComponent implements OnInit {
     })
 
     this.user.nombre = localStorage.getItem('sessionNombre')
+    
+   }
+
+  ngOnInit(): void {
+    
     
   }
 
@@ -55,18 +59,34 @@ export class DashboardComponent implements OnInit {
       alert("Debe ingresar un monto valido")
     }
   }
-  continuarAlCajero(){
-    var monto = this.monto
-    var retiro = this.montoRetiro
-
-    var direccion3 = "https://api.whatsapp.com/send?phone=584141220527&text=Nombre-Cliente----Retiro-saldo-nimbus:%20$USD"+retiro+"--Total-en-Bs:%20"+monto;
-
-    direccion3 = direccion3.toString();
-    window.location.href = direccion3;
-  }
 
   onChange(){
     this.calculado=false
   }
 
+  continuaralcajero(){
+    var ret = parseFloat(this.montoRetiro)
+    if(ret){
+      if(ret<5){
+        alert("Monto minimo para retirar son $USD.5")
+      }else{
+        if(ret > this.user.saldoNimbus){
+          alert("Su saldo Nimbus no es suficiente:"+this.user.saldoNimbus)
+        }else{
+
+          var monto = this.montoRetiro
+          var selectBank = this.selectBank
+          var datos = this.datosBancarios
+          var nombre = localStorage.getItem('sessionNombre');
+          var direccion = "https://api.whatsapp.com/send?phone=584141220527&text=Nombre:"+nombre+"--Retiro-saldo-nimbus:%20$USD"+monto+"--Metodo%20de%20Retiro:"+selectBank+"Datos-Bancarios:"+datos;
+      
+          var direccion = direccion.toString();
+          window.location.href = direccion;
+
+        }
+      }
+    }else{
+      alert("Debe ingresar un monto valido")
+    }
+  }
 }

@@ -14,6 +14,8 @@ import { ContactComponent } from './views/contact/contact.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { DashGuard } from './guards/dash.guard';
 import { DatosventaComponent } from './views/datosventa/datosventa.component';
+import { CriptosComponent } from './views/criptos/criptos.component';
+import { ResguardaComponent } from './views/resguarda/resguarda.component';
 
 const routes: Routes = [
   { path:'',              component:HomeComponent, pathMatch:'full'  },
@@ -28,6 +30,8 @@ const routes: Routes = [
   { path: 'datosventa/:ves/:coin/:amount',  component:DatosventaComponent, canActivate: [ DashGuard ] },
   { path: 'contact',      component:ContactComponent },
   { path: 'califications',component:CalificationsComponent },
+  { path: 'criptos',component:CriptosComponent },
+  { path: 'resguarda',component:ResguardaComponent, canActivate:[ DashGuard] },
   { path: 'dashboard',    component:DashboardComponent, canActivate: [ DashGuard ] },
   { path:'**',            component:DevelopComponent }
 ];

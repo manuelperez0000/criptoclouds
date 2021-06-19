@@ -1,4 +1,4 @@
-<div *ngIf="loading == true" class="row h100 text-center nube2 cargador">
+<div *ngIf="loadingCripto == true && loading == true" class="row h100 text-center nube2 cargador">
   <div class="col-4 align-self-center w-100">
     <img class="img-logo-load" src="../../../assets/logo-criptoclouds-white.svg" alt="" height="120px"><br>
     <p class="text-white">Loading...</p>
@@ -142,13 +142,13 @@
         En criptoclouds puedes cambiar una gran variedad de criptomonedas
       </p>
       <img src="../../../assets/cripto-img.svg" class="diseno" alt="" srcset="">
-      <button class="btn btn-primary form-control text-white">Ver criptos</button>
+      <button [routerLink]="['/criptos']" routerLinkActive="router-link-active"  class="btn btn-primary form-control text-white">Compra / Venta</button>
     </div>
     <div class="col-12 col-md-4 text-center p-4">
       <h1 class="text-blue title2">Resguarda</h1>
       <p>Convierte tus bolivares en dolares y retirarlos cuando los necesites</p>
       <img src="../../../assets/resguarda.svg" class="diseno" alt="" srcset="">
-      <button class="btn btn-primary form-control text-white">Resguardar</button>
+      <button [routerLink]="['/resguarda']" routerLinkActive="router-link-active"  class="btn btn-primary form-control text-white">Resguardar</button>
     </div>
     <div class="col-12 col-md-4 text-center py-4">
       <h1 class="text-blue title2">Remesas</h1>

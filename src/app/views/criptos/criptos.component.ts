@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { PrecioDolarService } from '../../services/precio-dolar.service';
 import { CoinsPricesService } from '../../services/coins-prices.service';
-import { IsloginService } from 'src/app/services/islogin.service';
 import { Router } from '@angular/router';
+import { IsloginService } from 'src/app/services/islogin.service';
 import Swal from 'sweetalert2';
-/* import { Calc } from '../../models/calc'; */
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-criptos',
+  templateUrl: './criptos.component.html',
+  styleUrls: ['./criptos.component.css']
 })
-export class HomeComponent implements OnInit {
+export class CriptosComponent implements OnInit {
   vesModel:any="";
   coinModel:any
 
@@ -30,25 +29,20 @@ export class HomeComponent implements OnInit {
   symbol:string = "BTC"
   changeValor:any = 0
   comenzar:string = "/dashboard"
+  constructor(private islogin:IsloginService, private router:Router, private precio:PrecioDolarService,private coins:CoinsPricesService ) { 
+    this.precio.getPrecioDolar().subscribe((resp:any)=>{
+      this.dolar = resp
+      this.loading = false
+    })
+    this.coins.getCoinPrice().subscribe((res:any) =>{
+      this.listaCriptos = res
+      this.changeValor = res[0].price
+      console.log(res)
+      this.loadingCripto = false
+    })
+  }
 
-  constructor(private router:Router,private islogin:IsloginService, private precio:PrecioDolarService,private coins:CoinsPricesService ) {    
-      this.precio.getPrecioDolar().subscribe((resp:any)=>{
-        this.dolar = resp
-        this.loading = false
-      })
-      this.coins.getCoinPrice().subscribe((res:any) =>{
-        this.listaCriptos = res
-        this.changeValor = res[0].price
-        console.log(res)
-        this.loadingCripto = false
-      })
-   } 
-  ngOnInit(){
-    if(!this.islogin.islog()){
-      this.comenzar="/login"
-    }else{
-      this.comenzar = "/dashboard"
-    }
+  ngOnInit(): void {
   }
 
   procCompra(){
@@ -122,4 +116,5 @@ export class HomeComponent implements OnInit {
     this.vesModel = ""
     this.coinModel = ""
   }
+
 }

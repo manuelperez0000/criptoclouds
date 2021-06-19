@@ -22,6 +22,8 @@ import { ContactComponent } from './views/contact/contact.component';
 import { CalificationsComponent } from './views/califications/califications.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { DatosventaComponent } from './views/datosventa/datosventa.component';
+import { CriptosComponent } from './views/criptos/criptos.component';
+import { ResguardaComponent } from './views/resguarda/resguarda.component';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { DatosventaComponent } from './views/datosventa/datosventa.component';
     ContactComponent,
     CalificationsComponent,
     DashboardComponent,
-    DatosventaComponent
+    DatosventaComponent,
+    CriptosComponent,
+    ResguardaComponent
   ],
   imports: [
     BrowserModule,

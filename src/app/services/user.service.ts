@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { UserModel } from '../models/user.model';
-import { localizedString } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +9,8 @@ import { localizedString } from '@angular/compiler/src/output/output_ast';
 export class UserService {
   user:UserModel = new UserModel;
   userToken:any;
-  //prod:urlGeneral= https://criptoclouds.com
-  urlGeneral:string="https://criptoclouds.com"
+  urlGeneral:string = "http://localhost:3000"
+  //urlGeneral:string ="https://criptoclouds.com"
   forgotUrl:string = "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCWNCK0lFUH01MuAzk-42hA3IXYhgE6QQ4"
   loginURL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCWNCK0lFUH01MuAzk-42hA3IXYhgE6QQ4'
   registerURL = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCWNCK0lFUH01MuAzk-42hA3IXYhgE6QQ4'
