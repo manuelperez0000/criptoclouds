@@ -13,14 +13,13 @@
           <h1 class="text-white title pb-3">Convierte tus Bolivares en criptos y divisas</h1>
           <p class="text-white pb-3">compra y vende <b class="yellow">Criptomonedas</b> de la forma mas rapida y segura
           </p>
-          <button [routerLink]="[comenzar]" 
-                  class="btn btn-primary form-control m-300 text-white"> 
-              Comenzar 
+          <button [routerLink]="[comenzar]" class="btn btn-primary form-control m-300 text-white">
+            Comenzar
           </button>
         </div>
         <div class="text-white">
           Precio del dolar:
-         
+
           <div *ngIf="loading == false">
             <h2>
               {{ dolar.precio | currency:'Bs. ' }}
@@ -29,7 +28,7 @@
         </div>
         <div class="text-white">
           Precio del Bitcoin:
-          
+
           <div *ngIf="loading == false">
             <h2 class="text-yellow">
               {{ listaCriptos[0].price*dolar.precio | currency:'Bs. ' }}
@@ -48,20 +47,20 @@
 
             <!-- cambio -->
             <div *ngIf="btnChange" class="input-group pb-2">
-                <input [(ngModel)]="vesModel" (change)="vesToCoin()" (keyup)="vesToCoin()" #ves
-                type="number" class="form-control imput-change">
-                <div class="btn-group" role="group">
-                  <button type="button" class="border-light btn btn-light select-money2 min-btn-calc">
-                    <img class="img-flag" src="../../../assets/img-monedas/ve.svg" alt="" srcset="">
+              <input [(ngModel)]="vesModel" (change)="vesToCoin()" (keyup)="vesToCoin()" #ves type="number"
+                class="form-control imput-change">
+              <div class="btn-group" role="group">
+                <button type="button" class="border-light btn btn-light select-money2 min-btn-calc">
+                  <img class="img-flag" src="../../../assets/img-monedas/ve.svg" alt="" srcset="">
                   VES
-                  </button>
+                </button>
               </div>
             </div>
             <!-- fin cambio -->
             <!-- inicio cambio -->
             <div *ngIf="!btnChange" class="input-group pb-2">
-              <input [(ngModel)]="coinModel" (change)="coinToVes()" (keyup)="coinToVes()" #coin
-                type="text" class="form-control imput-change">
+              <input [(ngModel)]="coinModel" (change)="coinToVes()" (keyup)="coinToVes()" #coin type="text"
+                class="form-control imput-change">
 
               <div class="btn-group" role="group">
                 <button id="money1" type="button"
@@ -88,19 +87,19 @@
               </button>
             </div>
             <div *ngIf="!btnChange" class="input-group pb-2">
-              <input [(ngModel)]="vesModel" (change)="vesToCoin()" (keyup)="vesToCoin()" #ves
-              type="text" class="form-control imput-change">
+              <input [(ngModel)]="vesModel" (change)="vesToCoin()" (keyup)="vesToCoin()" #ves type="text"
+                class="form-control imput-change">
               <div class="btn-group" role="group">
                 <button type="button" class="border-light btn btn-light select-money2 min-btn-calc">
                   <img class="img-flag" src="../../../assets/img-monedas/ve.svg" alt="" srcset="">
-                VES
+                  VES
                 </button>
+              </div>
             </div>
-          </div>
             <!-- inicio cambio -->
             <div *ngIf="btnChange" class="input-group pb-2">
-              <input [(ngModel)]="coinModel" (change)="coinToVes()" (keyup)="coinToVes()" #coin
-                type="text" class="form-control imput-change">
+              <input [(ngModel)]="coinModel" (change)="coinToVes()" (keyup)="coinToVes()" #coin type="text"
+                class="form-control imput-change">
               <div class="btn-group" role="group">
                 <button id="money1" type="button"
                   class="border-light btn btn-light dropdown-toggle select-money min-btn-calc" data-bs-toggle="dropdown"
@@ -142,19 +141,21 @@
         En criptoclouds puedes cambiar una gran variedad de criptomonedas
       </p>
       <img src="../../../assets/cripto-img.svg" class="diseno" alt="" srcset="">
-      <button [routerLink]="['/criptos']" routerLinkActive="router-link-active"  class="btn btn-primary form-control text-white">Compra / Venta</button>
+      <button [routerLink]="['/criptos']" routerLinkActive="router-link-active"
+        class="btn btn-primary form-control text-white">Compra / Venta</button>
     </div>
     <div class="col-12 col-md-4 text-center p-4">
       <h1 class="text-blue title2">Resguarda</h1>
       <p>Convierte tus bolivares en dolares y retirarlos cuando los necesites</p>
       <img src="../../../assets/resguarda.svg" class="diseno" alt="" srcset="">
-      <button [routerLink]="['/resguarda']" routerLinkActive="router-link-active"  class="btn btn-primary form-control text-white">Resguardar</button>
+      <button [routerLink]="['/resguarda']" routerLinkActive="router-link-active"
+        class="btn btn-primary form-control text-white">Resguardar</button>
     </div>
     <div class="col-12 col-md-4 text-center py-4">
       <h1 class="text-blue title2">Remesas</h1>
       <p>Envia remesas a tus familiares y amigo desde cualquier parte del mundo</p>
       <img src="../../../assets/remesas.svg" class="diseno" alt="" srcset="">
-      <button routerLink="remesas" class="btn btn-primary form-control text-white">Saber Mas</button>
+      <button routerLink="/remesas" class="btn btn-primary form-control text-white">Saber Mas</button>
     </div>
   </div>
 </div>

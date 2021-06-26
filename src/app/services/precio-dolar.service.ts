@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PrecioDolarService {
-  //url:string = "https://criptoclouds.com"
-  url:string = "http://localhost:3000"
+  url:string = "https://criptoclouds.com"
+  //url:string = "http://localhost:3000"
 
   constructor(private http:HttpClient) {}
   getPrecioDolar(){

@@ -12,6 +12,9 @@ export class DashboardComponent implements OnInit {
   userData:any;
   user:UserModel = new UserModel
   email:any;
+  tiempoExpira:any = new Date();
+  tiempoActual:any = new Date();
+  tiempoFalta:any;
   dolar:any;
   monto:any;
   selectBank:string="ven";
@@ -19,25 +22,34 @@ export class DashboardComponent implements OnInit {
   calculado:boolean=false;
   loading:boolean = true;
   datosBancarios:any;
-  constructor(private precioDolar:PrecioDolarService, private userService:UserService ) {
-    this.precioDolar.getPrecioDolar().subscribe((res)=>{
-      this.dolar = res
-      this.loading = false
-    })
-    this.userService.getUser().subscribe((res)=>{
-      this.user = res
-      localStorage.setItem('sessionNombre',res.nombre)
-      localStorage.setItem('sessionCedula',res.cedula)
-      localStorage.setItem('sessionTelefono',res.telefono)
-      console.log("respuesta de subscripcion:"+res)
-    })
 
-    this.user.nombre = localStorage.getItem('sessionNombre')
-    
-   }
+  constructor(private precioDolar:PrecioDolarService, private userService:UserService ) {
+    this.tiempoActual = this.tiempoActual.getTime()
+    this.tiempoExpira = localStorage.getItem('expira')
+
+    this.tiempoFalta = ((this.tiempoExpira-this.tiempoActual)/1000)/60
+
+
+  }
 
   ngOnInit(): void {
     
+    if(this.tiempoFalta<1){
+      this.userService.logOut()
+    }
+    this.precioDolar.getPrecioDolar().subscribe((res)=>{
+      this.dolar = res
+      this.loading = false
+    }, (err)=>{
+      console.log("Error obteniendo el precio del dolar: "+err)
+    })
+    
+    this.userService.getUser("manuelperez.0000@gmail.com").subscribe((res)=>{
+      this.user = res
+      this.loading = false
+    }, (err)=>{
+      console.log("Error obteniendo el usuario: "+err)
+    })
     
   }
 
@@ -88,5 +100,12 @@ export class DashboardComponent implements OnInit {
     }else{
       alert("Debe ingresar un monto valido")
     }
+  }
+  verificacion(){
+    var nombre = localStorage.getItem('sessionNombre');
+    var correo = localStorage.getItem('sessionEmail')
+    var direccion = "https://api.whatsapp.com/send?phone=584141220527&text=Hola%20mi%20nombre%20es%20"+nombre+"%20y%20mi%20correo:"+correo+",%20me gustaria%20verificar%20mi%20cuenta%20en%20criptoclouds"
+    
+    window.location.href = direccion;
   }
 }

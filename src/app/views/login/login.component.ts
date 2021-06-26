@@ -15,8 +15,13 @@ export class LoginComponent implements OnInit {
   user:UserModel = new UserModel()
   errorMessage:string="";
   recuerdame:boolean = false
+  
 
-  constructor(private userService:UserService, private router:Router) { }
+  constructor(private userService:UserService, private router:Router) { 
+    this.user.email = "manuelperez.0000@gmail.com"
+    this.user.password = "123456"
+
+  }
 
   ngOnInit(): void {
     if(localStorage.getItem('email')){
@@ -41,14 +46,11 @@ export class LoginComponent implements OnInit {
     .subscribe((res)=>{
       
       if(this.recuerdame){ this.saveEmail() }
-        localStorage.setItem('sessionEmail',res.email)
-        console.log("subscripto correcto:"+res.email )
-        if(res.email != ""){
-          this.router.navigateByUrl("/dashboard") 
-          Swal.close()
-        }else{
-          Swal.close()
-        }
+
+      Swal.close()
+
+      this.router.navigateByUrl("/dashboard")
+        
     },(err)=>{
       if(err.error.error.message == "INVALID_PASSWORD"){
         this.errorMessage = "Contraseña incorrecta"
@@ -65,6 +67,10 @@ export class LoginComponent implements OnInit {
       })
     });
   }
+
+ 
+   
+  
 
   saveEmail(){
     localStorage.setItem('email',this.user.email)

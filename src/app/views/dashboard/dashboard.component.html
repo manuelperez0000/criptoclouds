@@ -1,94 +1,135 @@
-<app-navbar></app-navbar>
-
-<div class="container min80vh mt-3 mb-5">
-    <div class="row">
-        <div class="col-12 col-sm-8 col-xl-5">
-            <div class="row">
-                <div class="col-12 ">
-                    <div class="p-3 bg-light br5">
-                        <h1 class="text-primary ">Dashboard</h1>
-                        <div class="bg-success p-3 br5">
-                            <p class="text-white mb-3 mt-1">
-                                <b>Hola</b> {{user.nombre}}
-                            </p>
-                            <p class="saldox mt-2">
-                                Saldo <b class="text-white">Nimbus Wallet</b>
-                            </p>
-                            <p class="text-white mb-2">
-                                <b class="saldoUsd">{{ user.saldoNimbus | currency: '$USD '}}</b>
-                            </p>
-                            <button class="btn btn-agregarSaldo"> Agregar saldo </button>
-                        </div>
-                        <div class="p-3 mt-3 radius shadow">
-                            <h5 class="text-primary mb-1" >Retirar saldo <b>Nimbus</b></h5>
-                            <p *ngIf="!loading" class="gray pb-2 text-small">
-                                Cotizacion Dolar:
-                                <b>{{ dolar.precio | currency:'Bs. ' }}</b>
-                            </p>
-                            <div class="btn-group mb-3 w-100" role="group" aria-label="Basic example">
-                                <div class="btn btn-success ">$USD</div>
-                                <input (keyup)="onChange()" id="retiro" [(ngModel)]="montoRetiro" type="text" class="form-control saldoRetiro" placeholder="Monto a retirar">
-                            </div>
-                            Forma de retiro
-                            <select [(ngModel)]="selectBank" class="form-select mt-1 mb-3">
-                                <option value="ven">Bs. Banco de venezuela</option>
-                                <option value="bod">Bs. BOD</option>
-                                <option value="ban">Bs. Banesco</option>
-                                <option value="pag">Bs. Pago movil</option>
-                                <option value="zelle">$USD Zelle</option>
-                                <option value="banP">$USD Banesco Panama</option>
-                                <option value="merP">$USD Mercantil Panama</option>
-                                <option value="bofa">$USD BOFA</option>
-                            </select>
-                            Datos para su pago
-                            <textarea [(ngModel)]="datosBancarios" placeholder="Ingrese sus datos bancarios" rows="5" class="form-control mb-3"></textarea>
-                            <button (click)="continuaralcajero()" class="btn btn-success">Continuar al cajero</button>
-                            
-                            <!-- <button class="btn btn-warning text-white">Retirar Fondos</button> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row g-2 mt-1">
-                
-                <div  class="col-6">
-                    <div [routerLink]="['/criptos']" routerLinkActive="router-link-active"  class="w-caja btn-compra">
-                        <div class="caja w-100"> 
-                            <div class="nombre-caja text-right px-2 pb-2">
-                               <b class="txt-1"> Compra y vende </b> <br>
-                               <b class="txt-2"> Criptos </b> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <div [routerLink]="['/resguarda']" routerLinkActive="router-link-active"  class="w-caja btn-resguarda">
-                        <div class="caja w-100"> 
-                            <div class="nombre-caja text-right px-2 pb-2">
-                               <b class="txt-1"> Resguarda </b> <br>
-                               <b class="txt-2"> Tu Dinero </b> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <div [routerLink]="['/remesas']" routerLinkActive="router-link-active"  class="w-caja btn-remesas">
-                        <div class="caja w-100"> 
-                            <div class="nombre-caja text-right px-2 pb-2">
-                               <b class="txt-1"> Enviar </b> <br>
-                               <b class="txt-2"> Remesas </b> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-
+<div *ngIf="loading" class="row h100 text-center nube2 cargador">
+    <div class="col-4 align-self-center w-100">
+        <img class="img-logo-load" src="../../../assets/logo-criptoclouds-white.svg" alt="" height="120px"><br>
+        <p class="text-white">Loading...</p>
     </div>
 </div>
 
+<app-navbar></app-navbar>
+<div *ngIf="!loading" class="container-fluid bg-light">
+    <div class="container min80vh py-4 ">
+        <div class="row gx-3">
+            <div class="col-12 col-sm-6 pb-4">
+                <h4 class="mt-1 text-primary">
+                    <b>Hola,</b> {{user.nombre}}
+                </h4>
+                <p *ngIf="!user.verificada" class="mb-3 text-danger">
+                    <i class="bi bi-shield-fill-x"></i>
+                    Cuenta no verificada
+
+                </p>
+                <p *ngIf="user.verificada" class="mb-3 text-success">
+                    <i class="bi bi-shield-fill-check"></i>
+                    Cuenta verificada
+                </p>
+                <!-- tiempo que Expira = {{ tiempoExpira }}<br>
+                Tiempo que vamos {{ tiempoActual }}<br>
+                Faltan  {{ tiempoFalta }} minutos -->
+                <div class="p-3 bg-white br5 shadow">
+                    <p class="saldox mt-2">
+                        Saldo <b class="">Nimbus Wallet</b>
+                    </p>
+                    <p class=" mb-2">
+                        <b class="saldoUsd">{{ user.saldoNimbus | currency: '$USD '}}</b>
+                    </p>
+                    <button [routerLink]="['/resguarda']" routerLinkActive="router-link-active"
+                        class="btn btn-agregarSaldo"> Agregar Fondos </button>
+                </div>
+                <div class="p-3 mt-3 br5 shadow bg-white">
+                    <h5 class="text-primary mb-1">Retirar saldo <b>Nimbus</b></h5>
+                    <p *ngIf="!loading" class="gray pb-2 text-small">
+                        Cotizacion Dolar:
+                        <b>{{ dolar.precio | currency:'Bs. ' }}</b>
+                    </p>
+                    <div class="btn-group mb-3 w-100" role="group" aria-label="Basic example">
+                        <div class="btn btn-success ">$USD</div>
+                        <input (keyup)="onChange()" id="retiro" [(ngModel)]="montoRetiro" type="text"
+                            class="form-control saldoRetiro" placeholder="Monto a retirar">
+                    </div>
+                    Forma de retiro
+                    <select [(ngModel)]="selectBank" class="form-select mt-1 mb-3">
+                        <option value="ven">Bs. Banco de venezuela</option>
+                        <option value="bod">Bs. BOD</option>
+                        <option value="ban">Bs. Banesco</option>
+                        <option value="pag">Bs. Pago movil</option>
+                        <option value="zelle">$USD Zelle</option>
+                        <option value="banP">$USD Banesco Panama</option>
+                        <option value="merP">$USD Mercantil Panama</option>
+                        <option value="bofa">$USD BOFA</option>
+                    </select>
+                    Datos para su pago
+                    <textarea [(ngModel)]="datosBancarios" placeholder="Ingrese sus datos bancarios" rows="5"
+                        class="form-control mb-3"></textarea>
+                    <button (click)="continuaralcajero()" class="btn btn-success">Continuar al cajero</button>
+
+                    <!-- <button class="btn btn-warning text-white">Retirar Fondos</button> -->
+                </div>
+
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="text-primary mb-4 mt-1 ">Comercio Electronico</h4>
+                    </div>
+                </div>
+                <div class="row gx-3 gy-3">
+
+                    <div class="col-6 col-sm-12 col-md-6 col-xl-4">
+                        <div [routerLink]="['/criptos']" class="w-caja btn-compra br5 shadow">
+                            <div class="caja w-100">
+                                <div class="nombre-caja text-right px-2 pb-2">
+                                    <b class="txt-1"> Compra y vende </b> <br>
+                                    <b class="txt-2"> Criptos </b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-sm-12 col-md-6 col-xl-4">
+                        <div [routerLink]="['/resguarda']" routerLinkActive="router-link-active"
+                            class="w-caja btn-resguarda br5 shadow">
+                            <div class="caja w-100">
+                                <div class="nombre-caja text-right px-2 pb-2">
+                                    <b class="txt-1"> Resguarda </b> <br>
+                                    <b class="txt-2"> Tu Dinero </b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-sm-12 col-md-6 col-xl-4">
+                        <div [routerLink]="['/remesas']" routerLinkActive="router-link-active"
+                            class="w-caja btn-remesas br5 shadow">
+                            <div class="caja w-100 br5 ">
+                                <div class="nombre-caja text-right px-2 pb-2">
+                                    <b class="txt-1"> Enviar </b> <br>
+                                    <b class="txt-2"> Remesas </b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 p-3">
+                        <h4 class="text-primary mb-3">Requisitos para la verificacion de tu cuenta</h4>
+                        <ul>
+                            <li>Foto de tu cedula o pasaporte</li>
+                            <li>Foto de tu rostro (Selfie)</li>
+                            <li>Verificacion de tus datos a traves de un administrador</li>
+                        </ul>
+                        <button (click)="verificacion()" class="btn btn-warning btn-verificar">Verificar mi
+                            cuenta</button>
+                        <hr>
+                        <h3 class="text-primary">Por tu seguridad y la nuestra</h3>
+                        <ul>
+                            <li>Todas las transacciones realizadas deben ser con cuentas registradas a tu nombre</li>
+                            <li>Al realizar una transaccion debes enviar captura de la transferencia al cajero para
+                                liberar el dinero</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <app-footer></app-footer>

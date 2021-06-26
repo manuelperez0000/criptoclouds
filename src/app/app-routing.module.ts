@@ -18,8 +18,8 @@ import { CriptosComponent } from './views/criptos/criptos.component';
 import { ResguardaComponent } from './views/resguarda/resguarda.component';
 
 const routes: Routes = [
-  { path:'',              component:HomeComponent, pathMatch:'full'  },
-  { path:'home',          component:HomeComponent },
+  { path: '',              component:HomeComponent, pathMatch:'full'  },
+  { path: 'home',          component:HomeComponent },
   { path: 'remesas',      component:RemesasComponent },
   { path: 'navtab',       component:NavtabComponent },
   { path: 'login',        component:LoginComponent },
@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'contact',      component:ContactComponent },
   { path: 'califications',component:CalificationsComponent },
   { path: 'criptos',component:CriptosComponent },
-  { path: 'resguarda',component:ResguardaComponent, canActivate:[ DashGuard] },
+  { path: 'resguarda',component:ResguardaComponent, canActivate:[ DashGuard ] },
   { path: 'dashboard',    component:DashboardComponent, canActivate: [ DashGuard ] },
   { path:'**',            component:DevelopComponent }
 ];

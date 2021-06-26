@@ -481,12 +481,18 @@ body{
   
 }
 .saldox{
-  font-size: 12px;
-  color: rgba(251, 251, 251, 0.726);
+  font-size: 14px;
+  color: rgb(212, 102, 13);
 }
 .saldoUsd{
-  font-size: 30px;
-  font-weight: 400;
+  font-size: 35px;
+  font-weight: 300;
+  color: #363636;
+}
+.saldoUsd-small{
+  font-size: 28px;
+  font-weight: 300;
+  color: #363636;
 }
 .min80vh{
   min-height: 80vh;
@@ -496,22 +502,23 @@ body{
   color: rgba(251, 251, 251, 0.726);
 }
 .w-caja{
-  
+  border:2px solid rgba(255, 255, 255, 0);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
   min-height:150px;
-  border-radius: 5px;
+
 }
 .caja{
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 10%, rgba(255, 255, 255, 0.5) 90%);
-  border-radius: 5px;
+  border-radius: 8px;
   padding:110px 10px 10px 10px;
   min-height:150px;
   text-align:left;
+  border: 2px solid rgba(255, 255, 255, 0);
 }
 .caja:hover{
-  border: 1px solid rgba(0, 59, 107, 0.835);
+  border: 2px solid rgba(0, 59, 107, 0.835);
   cursor: pointer;
 }
 .nombre-caja{
@@ -540,7 +547,7 @@ body{
 }
 
 .br5{
-  border-radius: 5px;
+  border-radius: 8px;
 }
 .text-primary{
   color: var(--primary) !important;
@@ -599,6 +606,40 @@ body{
   font-size: 12px;
 }
 .btn-agregarSaldo{
-  color:rgb(50,60,70);
-  background-color: rgb(250, 222, 92)
+  color:#008316;
+  border:1px solid #008316;
+  border-radius: 20px;
+  background-color: rgba(37, 192, 23, 0.075)
+}
+.btn-agregarSaldo:hover{
+  color: #18a830;
+  border:1px solid #18a830;
+}
+.btn-verificar{
+  border-radius: 20px;
+  font-size: 13px;
+  color: #fff;
+  background-color: rgba(212, 119, 13, 0.767);
+  border: 0px;
+}
+.btn-verificar:hover{
+  color: #fff;
+  background-color: rgb(211, 119, 43);
+}
+
+.version{
+  background-color: #797979c0;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  padding: 5px;
+  font-size: 10px;
+}
+.min80vh{
+  min-height: 80vh;
+}
+.nimbus-w{
+  font-size: 20px;
+  color: #272727;
+  font-weight: 400;
 }

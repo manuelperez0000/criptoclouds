@@ -8,4 +8,5 @@ export class UserModel{
     password2:any;
     textarea:any;
     saldoNimbus:any=0;
+    verificada:any;
 }

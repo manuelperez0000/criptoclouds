@@ -12,7 +12,7 @@ export class CoinsPricesService {
     console.log("lista cripto services activated")
     
     /*  production */
-    return this.http.get("http://localhost:3000/api/criptos")
+    return this.http.get("https://criptoclouds.com/api/criptos")
     
     /* local */
    /*  return this.http.get("http://localhost:3000/api/criptos") */
