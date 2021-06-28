@@ -16,6 +16,7 @@ import { DashGuard } from './guards/dash.guard';
 import { DatosventaComponent } from './views/datosventa/datosventa.component';
 import { CriptosComponent } from './views/criptos/criptos.component';
 import { ResguardaComponent } from './views/resguarda/resguarda.component';
+import { AdminPushComponent } from './views/admin-push/admin-push.component';
 
 const routes: Routes = [
   { path: '',              component:HomeComponent, pathMatch:'full'  },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'criptos',component:CriptosComponent },
   { path: 'resguarda',component:ResguardaComponent, canActivate:[ DashGuard ] },
   { path: 'dashboard',    component:DashboardComponent, canActivate: [ DashGuard ] },
+  { path: 'admin-push', component:AdminPushComponent},
   { path:'**',            component:DevelopComponent }
 ];
 

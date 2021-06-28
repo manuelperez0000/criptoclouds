@@ -24,6 +24,10 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { DatosventaComponent } from './views/datosventa/datosventa.component';
 import { CriptosComponent } from './views/criptos/criptos.component';
 import { ResguardaComponent } from './views/resguarda/resguarda.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { AdminPushComponent } from './views/admin-push/admin-push.component';
+
 
 
 @NgModule({
@@ -47,13 +51,20 @@ import { ResguardaComponent } from './views/resguarda/resguarda.component';
     DashboardComponent,
     DatosventaComponent,
     CriptosComponent,
-    ResguardaComponent
+    ResguardaComponent,
+    AdminPushComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
