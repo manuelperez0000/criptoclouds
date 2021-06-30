@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { UserModel } from '../../models/user.model';
 import { PrecioDolarService } from '../../services/precio-dolar.service';
+import { TransactionsService } from 'src/app/services/transactions.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,12 +24,17 @@ export class DashboardComponent implements OnInit {
   loading:boolean = true;
   datosBancarios:any;
 
-  constructor(private precioDolar:PrecioDolarService, private userService:UserService ) {
+  constructor(  private precioDolar:PrecioDolarService, 
+                private userService:UserService,
+                private transactions:TransactionsService ) {
+
     this.tiempoActual = this.tiempoActual.getTime()
     this.tiempoExpira = localStorage.getItem('expira')
 
     this.tiempoFalta = ((this.tiempoExpira-this.tiempoActual)/1000)/60
 
+    this.user.email = localStorage.getItem('sessionEmail')
+    console.log(JSON.stringify(this.user))
 
   }
 
@@ -37,14 +43,15 @@ export class DashboardComponent implements OnInit {
     if(this.tiempoFalta<1){
       this.userService.logOut()
     }
+
     this.precioDolar.getPrecioDolar().subscribe((res)=>{
       this.dolar = res
       this.loading = false
     }, (err)=>{
       console.log("Error obteniendo el precio del dolar: "+err)
     })
-    
-    this.userService.getUser("manuelperez.0000@gmail.com").subscribe((res)=>{
+    var email = this.user.email
+    this.userService.getUser(email).subscribe((res)=>{
       this.user = res
       this.loading = false
     }, (err)=>{

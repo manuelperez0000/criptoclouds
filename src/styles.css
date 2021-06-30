@@ -494,6 +494,11 @@ body{
   font-weight: 300;
   color: #363636;
 }
+.saldoUsd-xsmall{
+  font-size: 22px;
+  font-weight: 300;
+  color: #363636;
+}
 .min80vh{
   min-height: 80vh;
 }
@@ -642,4 +647,24 @@ body{
   font-size: 20px;
   color: #272727;
   font-weight: 400;
+}
+.bg-FFF9C2{
+  background-color: #FFF9C2;
+}
+.fecha{
+  font-size: 12px;
+  padding-right: 10px;
+  font-weight: lighter;
+  color: #575757;
+}
+.trans-text{
+  font-size: 12px;
+}
+.bb-1{
+  border-bottom: 0px !important;
+  border-left: 0px !important;
+  border-right: 0px !important;
+  border-top: 1px solid #e2e2e2d7 !important;
+  border-radius: 0px !important; 
+  background-color: #ffffff00;
 }

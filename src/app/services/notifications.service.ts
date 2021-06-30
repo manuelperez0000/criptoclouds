@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationsService {
-  //urlGeneral:any="https://criptoclouds.com"
-  urlGeneral:any="http://localhost:3000"
-  constructor(private http:HttpClient) { }
+
+  urlGeneral:String;
+  constructor(private http:HttpClient) { 
+
+    this.urlGeneral = environment.urlGeneral
+
+  }
 
   send(){
     return this.http.post(this.urlGeneral+"/notifications/send",{})

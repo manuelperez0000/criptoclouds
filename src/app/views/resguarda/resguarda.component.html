@@ -21,10 +21,10 @@
           Recibes
           <p class="saldox mt-2">
             Saldo <b class="">Nimbus Wallet</b>
-        </p>
-        <p class=" mb-2">
+          </p>
+          <p class=" mb-2">
             <b class="saldoUsd">{{ recibes | currency: '$USD '}}</b>
-        </p>
+          </p>
 
           <p class="gray">Cotizacion del dolar: {{ preciodolar.precio | currency:'Bs.' }}</p>
 
@@ -92,8 +92,7 @@
               </div>
             </div>
           </div>
-
-          <button (click)="sendWathsapp()" class="btn btn-success mt-3">Continuar al cajero</button>
+          <button (click)="confirmTransaction()" class="btn btn-success mt-3">Confirmar transaccion</button>
 
         </div>
 

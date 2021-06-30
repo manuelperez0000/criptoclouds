@@ -18,8 +18,6 @@ export class LoginComponent implements OnInit {
   
 
   constructor(private userService:UserService, private router:Router) { 
-    this.user.email = "manuelperez.0000@gmail.com"
-    this.user.password = "123456"
 
   }
 
@@ -43,9 +41,13 @@ export class LoginComponent implements OnInit {
     Swal.showLoading()
     
     this.userService.login(this.user)
-    .subscribe((res)=>{
+    .subscribe(async(res)=>{
       
-      if(this.recuerdame){ this.saveEmail() }
+      if(this.recuerdame){ 
+      await this.saveEmail() 
+      }
+
+      localStorage.setItem('sessionEmail',this.user.email)
 
       Swal.close()
 
@@ -68,12 +70,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
- 
-   
-  
-
-  saveEmail(){
+  async saveEmail(){
     localStorage.setItem('email',this.user.email)
+    return true
   }
 
 

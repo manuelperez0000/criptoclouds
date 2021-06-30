@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { UserModel } from '../models/user.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,15 +10,15 @@ import { UserModel } from '../models/user.model';
 export class UserService {
   user:UserModel = new UserModel;
   userToken:string | null = "";
-  //urlGeneral:string = "http://localhost:3000"
-  urlGeneral:string ="https://criptoclouds.com"
-  forgotUrl:string = "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCWNCK0lFUH01MuAzk-42hA3IXYhgE6QQ4"
-  loginURL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCWNCK0lFUH01MuAzk-42hA3IXYhgE6QQ4'
-  registerURL = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCWNCK0lFUH01MuAzk-42hA3IXYhgE6QQ4'
+  urlGeneral:string;
+  forgotUrl:string = "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key="+environment.apikey
+  loginURL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+environment.apikey
+  registerURL = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+environment.apikey
   userActive:any;
   expirationDate:Date = new Date();
 
   constructor( private http:HttpClient) {
+    this.urlGeneral = environment.urlGeneral
     this.leerToken()
     this.userActive = localStorage.getItem('sessionEmail')
    }
@@ -120,7 +121,7 @@ export class UserService {
     localStorage.removeItem('expira')
   }
 
-  getUser(email:string){
+  getUser(email:String){
     return this.http.get(this.urlGeneral+"/firebase/getUser/"+email)
     .pipe(map((resp:any)=>{
       //console.log("respuesta en el map:"+ JSON.stringify(resp) )
