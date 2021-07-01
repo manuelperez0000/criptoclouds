@@ -4,6 +4,7 @@ import { PrecioDolarService } from '../../services/precio-dolar.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { TransactionsModel } from 'src/app/models/transactions.model';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 @Component({
   selector: 'app-resguarda',
@@ -16,7 +17,7 @@ export class ResguardaComponent implements OnInit {
   transactionModel:TransactionsModel = new TransactionsModel;
   amount:any;
   wallet:any;
-  banco:string ="ven"
+  banco:string ="Venezuela"
   email:any = localStorage.getItem('sessionEmail')
   recibes:any;
   vesModel:any
@@ -24,6 +25,7 @@ export class ResguardaComponent implements OnInit {
 
   constructor(  private precioDolar:PrecioDolarService,
                 private router:Router, 
+                private notifications:NotificationsService,
                 private transaction:TransactionsService ) {
 
     this.precioDolar.getPrecioDolar().subscribe((res)=>{
@@ -40,7 +42,7 @@ export class ResguardaComponent implements OnInit {
   confirmTransaction(){
 
 
-    var montoMinimo= 10000000
+    var montoMinimo = 10000000
     if(this.vesModel){
       if(parseFloat(this.vesModel) < montoMinimo){
         alert("Monto minimo de Bs."+montoMinimo)
@@ -75,6 +77,10 @@ export class ResguardaComponent implements OnInit {
         }
 
         this.transaction.saveTransaction(objTransaction).subscribe((res)=>{
+
+          this.notifications.send().subscribe(()=>{
+            console.log("Notificacione enviada desde resguarda")
+          })
 
           console.log("Respuesta de transaccion: "+ JSON.stringify(res))
           Swal.close()

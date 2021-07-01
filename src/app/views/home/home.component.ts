@@ -18,12 +18,13 @@ export class HomeComponent implements OnInit {
   decimalVes:any = 0
   decimalCoin:any = 0
   btnChange:boolean = true
-
   porcentage:any = 5
-
   decimalAux:any = 0
+
   loading:boolean = true
+
   loadingCripto:boolean = true
+
   dolar:any = {precio:0}
   listaCriptos:any
   cripto:number = 0

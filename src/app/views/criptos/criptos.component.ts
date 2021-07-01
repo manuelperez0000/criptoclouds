@@ -21,8 +21,10 @@ export class CriptosComponent implements OnInit {
   porcentage:any = 5
 
   decimalAux:any = 0
+  
   loading:boolean = true
   loadingCripto:boolean = true
+
   dolar:any = {precio:0}
   listaCriptos:any
   cripto:number = 0

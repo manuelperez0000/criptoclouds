@@ -9,4 +9,5 @@ export class TransactionsModel {
     montoRecibe:String="";
     monedaEnvia:String="";
     monedaRecibe:String="";
+    wallet:String="";
 }

@@ -37,13 +37,13 @@
             Elija el banco de donde enviara
           </p>
           <select id="banco" [(ngModel)]="banco" class="form-select">
-            <option value="ven">Venezuela</option>
-            <option value="ban">Banesco</option>
-            <option value="bod">BOD</option>
-            <option value="pag">PagoMovil</option>
+            <option value="Venezuela">Venezuela</option>
+            <option value="Banesco">Banesco</option>
+            <option value="BOD">BOD</option>
+            <option value="PagoMovil">PagoMovil</option>
           </select>
 
-          <div *ngIf="banco == 'ven'" class="card mb-3 mt-2">
+          <div *ngIf="banco == 'Venezuela'" class="card mb-3 mt-2">
             <div class="card-header text-white bg-danger">Banco De Venezuela</div>
             <div class="card-body">
               <div class="w-bancos-{{banco}} px-2">
@@ -55,7 +55,7 @@
             </div>
           </div>
 
-          <div *ngIf="banco == 'ban'" class="card mb-3 mt-2">
+          <div *ngIf="banco == 'Banesco'" class="card mb-3 mt-2">
             <div class="card-header text-white bg-success">
               Banesco</div>
             <div class="card-body">
@@ -68,7 +68,7 @@
             </div>
           </div>
 
-          <div *ngIf="banco == 'bod'" class="card mb-3 mt-2">
+          <div *ngIf="banco == 'BOD'" class="card mb-3 mt-2">
             <div class="card-header text-white bg-primary">
               BOD</div>
             <div class="card-body">
@@ -81,7 +81,7 @@
             </div>
           </div>
 
-          <div *ngIf="banco == 'pag'" class="card mb-3 mt-2">
+          <div *ngIf="banco == 'PagoMovil'" class="card mb-3 mt-2">
             <div class="card-header text-white bg-primary">
               PagoMovil</div>
             <div class="card-body">

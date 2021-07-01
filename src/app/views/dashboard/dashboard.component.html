@@ -12,6 +12,7 @@
             <div class="col-12 col-sm-6 pb-4">
                 <h4 class="mt-1 text-primary">
                     <b>Hola,</b> {{user.nombre}}
+
                 </h4>
                 <p *ngIf="!user.verificada" class="mb-3 text-danger">
                     <i class="bi bi-shield-fill-x"></i>
@@ -41,26 +42,45 @@
                         Cotizacion Dolar:
                         <b>{{ dolar.precio | currency:'Bs. ' }}</b>
                     </p>
-                    <div class="btn-group mb-3 w-100" role="group" aria-label="Basic example">
-                        <div class="btn btn-success ">$USD</div>
-                        <input (keyup)="onChange()" id="retiro" [(ngModel)]="montoRetiro" type="text"
-                            class="form-control saldoRetiro" placeholder="Monto a retirar">
-                    </div>
-                    Forma de retiro
-                    <select [(ngModel)]="selectBank" class="form-select mt-1 mb-3">
-                        <option value="ven">Bs. Banco de venezuela</option>
-                        <option value="bod">Bs. BOD</option>
-                        <option value="ban">Bs. Banesco</option>
-                        <option value="pag">Bs. Pago movil</option>
-                        <option value="zelle">$USD Zelle</option>
-                        <option value="banP">$USD Banesco Panama</option>
-                        <option value="merP">$USD Mercantil Panama</option>
-                        <option value="bofa">$USD BOFA</option>
-                    </select>
-                    Datos para su pago
-                    <textarea [(ngModel)]="datosBancarios" placeholder="Ingrese sus datos bancarios" rows="5"
-                        class="form-control mb-3"></textarea>
-                    <button (click)="continuaralcajero()" class="btn btn-success">Continuar al cajero</button>
+                    <p class="gray pb-2 text-small">
+                        Los retiros en cuentas en Dolares tendran una comision del <b>4%</b>
+                    </p>
+
+                    <form (ngSubmit)="retiroNimbus(form)" #form="ngForm">
+                        <div class="btn-group mb-3 w-100" role="group" aria-label="Basic example">
+                            <div class="btn btn-success ">$USD</div>
+                            <input required (keyup)="onChange()" name="montoRetiro" id="retiro" [(ngModel)]="montoRetiro" type="text"
+                                class="form-control saldoRetiro" placeholder="Monto a retirar">
+                        </div>
+                        Forma de retiro
+                        <select [(ngModel)]="selectBank" name="selectBank" class="form-select mt-1 mb-3">
+                            <option value="Venezuela">Bs. Banco de venezuela</option>
+                            <option value="BOD">Bs. BOD</option>
+                            <option value="Banesco">Bs. Banesco</option>
+                            <option value="PagoMovil">Bs. Pago movil</option>
+                            <option value="Zelle">$USD Zelle</option>
+                            <option value="BanescoPanama">$USD Banesco Panama</option>
+                            <option value="MercantilPanama">$USD Mercantil Panama</option>
+                            <option value="BOFA">$USD BOFA</option>
+                        </select>
+                        Datos para su pago
+                        <input required name="titular" [(ngModel)]="datosBanco.titular" type="text" class="form-control mt-2 mb-2"
+                            placeholder="Nombre del titular">
+                        <input required [(ngModel)]="datosBanco.cuenta" name="cuenta" type="text" class="form-control mb-2"
+                            placeholder="Numero de cuenta">
+                        <input required [(ngModel)]="datosBanco.cedula" name="cedula" type="text" class="form-control mb-2"
+                            placeholder="Cedula">
+                        <select [(ngModel)]="datosBanco.tipo" name="tipo" class="form-select mt-1 mb-3">
+                            <option value="Corriente">Corriente</option>
+                            <option value="Ahorros">Ahorros</option>
+                            <option value="EnDolares">Cuenta en dolares</option>
+
+                        </select>
+
+                        <input required [(ngModel)]="datosBanco.telefono" name="telefono" type="text" class="form-control mb-2"
+                            placeholder="Numero de telefono titular">
+                        <button type="submit" class="btn mt-2 btn-success">Procesar Retiro</button>
+                    </form>
 
                     <!-- <button class="btn btn-warning text-white">Retirar Fondos</button> -->
                 </div>
@@ -115,40 +135,55 @@
                         <div class="br5 shadow bg-white">
                             <div class="p-3 fecha">
                                 <h4 class="text-primary mb-3 mt-1 ">Historial de transacciones</h4>
+
+
                                 <span class="badge bg-secondary">P</span> Pendiente
                                 <span class="badge bg-success">T</span> Transferido
                                 <span class="badge bg-danger">N</span> Negada
                             </div>
 
                             <div class="accordion br5" id="accordionExample">
+                                <!--  {{ arrayTransactions.__zone_symbol__value | json }} -->
+                                <div *ngFor="let item of arrayTransactions; let i = index" class="bb-1">
+                                    <div class="">
+                                        <div class="px-3 py-2  bg-light d-flex justify-content-between d-block">
+                                            <div>
 
-                                <div class="accordion-item bb-1">
-                                    <h2 class="accordion-header" id="headingOne">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#idtrans1" aria-expanded="true"
-                                            aria-controls="idtrans1">
-                                            <b class="trans-text"><b class="fecha">14/05/2021 </b> Compra de criptos
-                                                <span class="badge bg-secondary">P</span></b>
-                                        </button>
-                                    </h2>
-                                    <!-- show -->
-                                    <div id="idtrans1" class="accordion-collapse collapse"
-                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            ID: <b>465df4g654dfg</b><br>
+                                                <b class="fecha">{{item.data.fecha}} </b>
+                                                <b class="text-primary concepto">{{item.data.concepto}} </b>
+                                                <span *ngIf="item.data.estatus == 0" class="badge bg-secondary">P</span>
+                                                <span *ngIf="item.data.estatus == 1" class="badge bg-success">T</span>
+                                                <span *ngIf="item.data.estatus == 2" class="badge bg-danger">N</span>
+
+                                            </div>
+                                            <button *ngIf="item.collapse" class="btn p-0" (click)="cambio(i)">
+                                                <i class="bi bi-plus-circle"></i>
+                                            </button>
+                                            <button *ngIf="!item.collapse" class="btn p-0" (click)="cambio(i)">
+                                                <i class="bi bi-dash-circle"></i>
+                                            </button>
+
+                                        </div>
+
+                                        <div *ngIf="!item.collapse" class="px-3 py-2 bottom-text">
+                                            <b>ID: </b>
+                                            <div class="d-inline saldoUsd-xsmall2">{{item.id}}</div> <br>
                                             Monto a enviar:
-                                            <p class="saldoUsd-xsmall">
-                                                <b>BTC </b> 0.00054654654
+                                            {{item.data.banco}}
+                                            <p class="saldoUsd-xsmall2">
+                                                <b class="text-primary">{{ item.data.monedaEnvia | uppercase }} </b>
+                                                {{item.data.montoEnvia | currency:' '}}
                                             </p>
                                             Monto a recibir:
-                                            <p class="saldoUsd-xsmall">
-                                                <b>VES </b> 100,121,123.01
+                                            <p class="saldoUsd-xsmall2">
+                                                <b class="text-primary">{{ item.data.monedaRecibe | uppercase }} </b>
+                                                {{item.data.montoRecibe | currency:' '}}
                                             </p>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="accordion-item bb-1">
+
+                                    <!--  <div class="accordion-item bb-1">
                                     <h2 class="accordion-header" id="headingThree">
                                         <button class="accordion-button collapsed" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#collapseThree"
@@ -171,32 +206,34 @@
 
                                         </div>
                                     </div>
+                                </div> -->
+
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 p-3">
-                        <h4 class="text-primary mb-3">Requisitos para la verificacion de tu cuenta</h4>
-                        <ul>
-                            <li>Foto de tu cedula o pasaporte</li>
-                            <li>Foto de tu rostro (Selfie)</li>
-                            <li>Verificacion de tus datos a traves de un administrador</li>
-                        </ul>
-                        <button (click)="verificacion()" class="btn btn-warning btn-verificar">Verificar mi
-                            cuenta</button>
-                        <hr>
-                        <h3 class="text-primary">Por tu seguridad y la nuestra</h3>
-                        <ul>
-                            <li>Todas las transacciones realizadas deben ser con cuentas registradas a tu nombre</li>
-                            <li>Al realizar una transaccion debes enviar captura de la transferencia al cajero para
-                                liberar el dinero</li>
-                        </ul>
-                    </div>
+                        <div class="col-12 p-3">
+                            <h4 class="text-primary mb-3">Requisitos para la verificacion de tu cuenta</h4>
+                            <ul>
+                                <li>Foto de tu cedula o pasaporte</li>
+                                <li>Foto de tu rostro (Selfie)</li>
+                                <li>Verificacion de tus datos a traves de un administrador</li>
+                            </ul>
+                            <button (click)="verificacion()" class="btn btn-warning btn-verificar">Verificar mi
+                                cuenta</button>
+                            <hr>
+                            <h3 class="text-primary">Por tu seguridad y la nuestra</h3>
+                            <ul>
+                                <li>Todas las transacciones realizadas deben ser con cuentas registradas a tu nombre
+                                </li>
+                                <li>Al realizar una transaccion debes enviar captura de la transferencia al cajero para
+                                    liberar el dinero</li>
+                            </ul>
+                        </div>
 
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<app-footer></app-footer>
+    <app-footer></app-footer>

@@ -1,11 +1,18 @@
-<div *ngIf="loadingCripto == true && loading == true" class="row h100 text-center nube2 cargador">
+<!-- <div *ngIf="loadingCripto == true && loading == true" class="row h100 text-center nube2 cargador">
   <div class="col-4 align-self-center w-100">
     <img class="img-logo-load" src="../../../assets/logo-criptoclouds-white.svg" alt="" height="120px"><br>
     <p class="text-white">Loading...</p>
   </div>
-</div>
-
+</div> -->
 <app-navbar></app-navbar>
+<div *ngIf="loading" class="bg-light py-5">
+  <div  class="text-center py-5 my-5 bg-light gray">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden"></span>
+    </div><br>
+    Loading...
+  </div>
+</div>
 
 <div *ngIf="loading == false" class="min100vh container-fluid bg-light">
   <div class="container pt-3 pb-3">
